@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import axios from 'axios';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +11,25 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  /*
+axios.post("https://localhost:4024/executeQuery",
+  {
+    'query': 'select sym,price from t',
+    'response': 'true',
+    'type': 'sync'
+  },
+  {
+    auth: {
+      username: "user",
+      password: "pass"
+    },
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "BASIC dXNlcjpwYXNz"
+    }
+  }
+)
+  .then(res => console.log(res.data.result)) // This is the output if there's no errors
+  .catch(err => console.error(err)) // This is the output if there is a error
+*/
