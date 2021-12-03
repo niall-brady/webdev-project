@@ -20,7 +20,7 @@ axios.post("https://localhost:4024/executeFunction",
       "tablename":"trade",
       "starttime":"2021.11.29D10:00:00.000000000",
       "endtime":"2021.11.29D10:05:00.000000000",
-      "columns":'date'
+      "columns":"date"
     }
   },
   {
