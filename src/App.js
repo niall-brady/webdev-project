@@ -2,6 +2,7 @@ import './App.css';
 import { Button } from '@mui/material';
 // import { LoremIpsum } from "lorem-ipsum";
 import { useState/*, useEffect*/} from 'react';
+import Graph from './components/graph';
 
 // const lorem = new LoremIpsum({
 //   sentencesPerParagraph: {
@@ -30,7 +31,8 @@ function App() {
       <div className="content">
         <h1>Hello There, {name}</h1>
         <Button onClick={changeName}>Change Name</Button>
-        <p>Example text</p>
+        <h2>Volatility Graph</h2>
+        <Graph />
       </div>
     </div>
   );

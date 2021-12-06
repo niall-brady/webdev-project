@@ -5,3 +5,8 @@
 body {
   margin: 0 20%;
 }
+
+.plot {
+  height: 500px;
+  width: 900px;
+}
