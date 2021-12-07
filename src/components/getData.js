@@ -2,16 +2,19 @@ import axios from "axios";
 import {useState, useEffect} from "react";
 
 function GetResult() {
+  /*
+    This function executes a query through qRest and returns the result
+  */
 
-  const url = 'https://localhost:4024/executeFunction';
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const url = 'https://localhost:4024/executeFunction'; // Url and port of qRest server
+  const [result, setResult] = useState(null);           // Initialising result
+  const [loading, setLoading] = useState(true);         // Initialising loading boolean
+  const [error, setError] = useState(null);             // Initialising error variable
 
   useEffect(() => {
     axios.post(url,
       {
-        // select 
+        // Query
         "function_name": ".dataaccess.qrest",
         "arguments":{
           "tablename":"trade",
@@ -23,10 +26,12 @@ function GetResult() {
         }
       },
       {
+        // Username and password for qRest
         auth: {
           username: "user",
           password: "pass"
         },
+        // Setting the type of the request to JSON and giving authorisation code
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
@@ -34,11 +39,12 @@ function GetResult() {
         }
       }
     )
-      .then(res => {setResult(res.data.result)}) // This is the output if there's no errors
-      .catch(err => {setError(err)}) // This is the output if there is a error
-      .finally(() => {setLoading(false)})
-  }, [])
+      .then(res => {setResult(res.data.result)})  // This is the output if there's no errors
+      .catch(err => {setError(err)})              // This is the output if there is a error
+      .finally(() => {setLoading(false)})         // This is outputted no matter what
+  }, []) // This useEffect is only ran when the page starts
 
+  // Returning result, loading and error variables as an object
   return {result, loading, error};
 
 }

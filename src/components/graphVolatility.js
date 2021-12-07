@@ -2,59 +2,31 @@ import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from '@nivo/line'
 import GetResult from "./getData";
 
-// Graph function
-const PlotLineGraph = ({ res }) => (
-    <ResponsiveLine
-        data={res}
-        width={500}
-        height={500}
-    />
-)
-
-const exampleData = [
-    {
-      id: "Data",
-      data: [
-        { x: 1, y: 130 },
-        { x: 2, y: 165 },
-        { x: 3, y: -142 },
-        { x: 4, y: 19 }
-      ]
-    },
-    {
-      id: "Data2",
-      data: [{ x: 1, y: -30 }, { x: 2, y: 50 }, { x: 3, y: -12 }, { x: 4, y: 28 }]
-    }
-];
+// const exampleData = [
+//     {
+//       id: "sym1",
+//       data: [
+//         { x: 1, y: 130 },
+//         { x: 2, y: 165 },
+//         { x: 3, y: -142 },
+//         { x: 4, y: 19 }
+//       ]
+//     },
+//     {
+//       id: "sym2",
+//       data: [{ x: 1, y: -30 }, { x: 2, y: 50 }, { x: 3, y: -12 }, { x: 4, y: 28 }]
+//     }
+// ];
 
 function ConvertData(result){
-    const [data, setData] = useState(null)
-
-    useEffect(() => {
-        if (result != null){
-            var items = Array(result.length);
-
-            items.fill(null);
-
-            for (var i = 0; i < result.length; i++) {
-                items[i] = {id: result[i].sym, data: [{x: result[i].time, y:result[i].devPrice}]};
-            }
-
-            setData(items)
-        }
-        
-    }, [result])
-
-    return data
-}
-
-
-function ConvertDataNew(result){
     /*
+        This function is needed to sort the data into a format readable by nivo
+        (See exampleData above)
+    
         Looping through results,
         getting unique syms,
         sorting each unique sym into its own object,
-        adding x and y's relating to that sym into that object
+        appending x (Time) and y's (devPrice) relating to that sym into that object's data array
 
         (Works because the results are ordered by sym)
     */
@@ -62,48 +34,70 @@ function ConvertDataNew(result){
     const [data, setData] = useState(null)
 
     useEffect(() => {
-        if (result != null){
-            var lastSym = "_"
-            var symList = []
-            var symCounter = -1
-            var coordsCounter = 0
-            var coordsList = []
+        // To avoid errors if result is still being loaded
+        if (result !== null){
+            var lastSym = "_"       // This is just to initialise the lastSym variable
+            var symList = []        // Initialising list of symbols, the id part of each object
+            var symCounter = -1     // Starts at -1 as it corresponds to the index of the current sym
+            var xyListCounter = 0   // Keeps track of the xyList index that the loop is on
+            var xyList = []         // Array of x and y's for the data part of each object
 
+            // Looping through all items in results
             for (var i = 0; i < result.length; i++) {
-                // First time finding sym
-                if (result[i].sym != lastSym) {
+                // First time finding this sym
+                if (result[i].sym !== lastSym) {
+                    // Incrementing symCounter, resetting xyListCounter and emptying xyList
                     symCounter++
-                    coordsCounter = 0
-                    coordsList = []
-                    coordsList[0] = {x:result[i].time, y:result[i].devPrice}
-                    symList[symCounter] = {id: result[i].sym, data:coordsList}
+                    xyListCounter = 0
+                    xyList = []
+
+                    // Setting first element of xylist to this item's dat & incrementing xyListCounter
+                    xyList[xyListCounter] = {x:result[i].time, y:result[i].devPrice}
+                    xyListCounter++
+
+                    // Adding id (sym) and data (xyList) to symList at index symCounter
+                    symList[symCounter] = {id: result[i].sym, data:xyList}
+
+                    // Updating lastSym to be this new symbol
                     lastSym = result[i].sym
                 }
                 // Other times finding same sym
                 else {
-                    coordsList[coordsCounter] = {x:result[i].time, y:result[i].devPrice}
-                    symList[symCounter] = {id:symList[symCounter].id, data:coordsList}
-                    coordsCounter++
+                    // Setting element of xylist to this item's dat at index xyListCounter
+                    xyList[xyListCounter] = {x:result[i].time, y:result[i].devPrice}
+                    xyListCounter++ // Incrementing xyListCounter
+
+                    // Adding id (unchanged) and data (updated) to symList at index symCounter
+                    symList[symCounter] = {id:symList[symCounter].id, data:xyList}
+                    
                 }
             }
-
+            // Setting data variable to the symList created
             setData(symList)
         }
         
-    }, [result])
+    }, [result]) // Rerunning only if result changes
 
     return data
 }
 
-// Exporting graph
-const Graph = () => {
+// Exported graph component
+const GraphVolatility = () => {
+    // Getting result from qRest query
     const {result, loading, error} = GetResult();
 
-    const data = ConvertDataNew(result)
+    // Converting result to be readable by nivo
+    const data = ConvertData(result)
 
+    // If still loading data
     if (loading) return <h1>Loading...</h1>
+
+    // Else if an error has occurred
     else if (error) console.log(error)
+
+    // Otherwise...
     else
+    // (className set for the plot so that it can be styled in 'App.css' by referring to that name)
     return (
         <div className="plot">
             <ResponsiveLine
@@ -168,4 +162,4 @@ const Graph = () => {
     );
 }
  
-export default Graph;
+export default GraphVolatility;
