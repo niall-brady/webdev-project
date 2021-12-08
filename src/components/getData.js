@@ -7,7 +7,7 @@ function GetVolResult() {
     (Niall's Volatility Graph Results)
   */
 
-  const url = 'https://localhost:4024/executeFunction'; // Url and port of qRest server
+  const url = 'https://localhost:8091/executeFunction'; // Url and port of qRest server
   const [result, setResult] = useState(null);           // Initialising result
   const [loading, setLoading] = useState(true);         // Initialising loading boolean
   const [error, setError] = useState(null);             // Initialising error variable
