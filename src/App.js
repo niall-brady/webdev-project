@@ -2,16 +2,17 @@ import './App.css';
 import { Button, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import GraphVolatility from './components/graphVolatility';
+import Graph from './components/graph';
 
 function App() {
-  const [name, setName] = useState("Niall");
+  const [name, setName] = useState("!");
   const [value, setValue] = useState("one");
 
   function changeName() {
-    if (name==="Niall") {
-      setName("General Kenobi");
+    if (name==="!") {
+      setName(", General Kenobi");
     } else {
-      setName("Niall");
+      setName("!");
       console.log((new Date()).toDateString())
     }
   }
@@ -19,8 +20,8 @@ function App() {
   return (
     <div className="App">
       <div className="content">
-        <h1>Hello There, {name}</h1>
-        <Button onClick={changeName}>Change Name</Button>
+        <h1>Hello There{name}</h1>
+        <Button onClick={changeName}>Change Title</Button>
         <Tabs
           value={value}
           onChange={(event, newValue) => {setValue(newValue)}}
@@ -39,9 +40,7 @@ function App() {
           </p>
         }
         {value === "two" &&
-          <p>
-            Much empty
-          </p>
+          <Graph />
         }
         {value === "three" &&
           <p>

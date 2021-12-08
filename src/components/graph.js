@@ -1,26 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from '@nivo/line'
-import GetVolResult from "./getData";
+import GetResult from "./get";
 
 /* 
-    (Niall's Volatility Graph)
+    (Conor's Volatility Graph)
 */
-
-// const exampleData = [
-//     {
-//       id: "sym1",
-//       data: [
-//         { x: 1, y: 130 },
-//         { x: 2, y: 165 },
-//         { x: 3, y: -142 },
-//         { x: 4, y: 19 }
-//       ]
-//     },
-//     {
-//       id: "sym2",
-//       data: [{ x: 1, y: -30 }, { x: 2, y: 50 }, { x: 3, y: -12 }, { x: 4, y: 28 }]
-//     }
-// ];
 
 function ConvertData(result){
     /*
@@ -31,6 +15,8 @@ function ConvertData(result){
         getting unique syms,
         sorting each unique sym into its own object,
         appending x (Time) and y's (devPrice) relating to that sym into that object's data array
+
+        (Works because the results are ordered by sym)
     */
 
     const [data, setData] = useState(null)
@@ -60,7 +46,7 @@ function ConvertData(result){
                     xyList = []
 
                     // Setting first element of xylist to this item's dat & incrementing xyListCounter
-                    xyList[xyListCounter] = {x:result[i].time, y:result[i].devPrice}
+                    xyList[xyListCounter] = {x:result[i].time, y:result[i].avgsPrice}
                     xyListCounter++
 
                     // Adding id (sym) and data (xyList) to symList at index symCounter
@@ -72,11 +58,12 @@ function ConvertData(result){
                 // Other times finding same sym
                 else {
                     // Setting element of xylist to this item's dat at index xyListCounter
-                    xyList[xyListCounter] = {x:result[i].time, y:result[i].devPrice}
+                    xyList[xyListCounter] = {x:result[i].time, y:result[i].avgsPrice}
                     xyListCounter++ // Incrementing xyListCounter
 
                     // Adding id (unchanged) and data (updated) to symList at index symCounter
                     symList[symCounter] = {id:symList[symCounter].id, data:xyList}
+                    
                 }
             }
             // Setting data variable to the symList created
@@ -89,9 +76,9 @@ function ConvertData(result){
 }
 
 // Exported graph component
-const GraphVolatility = () => {
+const Graph = () => {
     // Getting result from qRest query
-    const {result, loading, error} = GetVolResult();
+    const {result, loading, error} = GetResult();
 
     // Converting result to be readable by nivo
     const data = ConvertData(result)
@@ -110,12 +97,7 @@ const GraphVolatility = () => {
             <ResponsiveLine
                 data={data}
                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-                xScale={{
-                    type: 'linear',
-                    min: 'auto',
-                    max: 'auto'
-                }}
-                xFormat="time:%Y-%m-%dT%H:%M:%S.%L%Z"
+                xScale={{ type: 'linear', min: 'auto', max: 'auto' }}
                 yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
                 axisTop={null}
                 axisRight={null}
@@ -133,7 +115,7 @@ const GraphVolatility = () => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Standard Deviation of Price',
+                    legend: 'Running average price',
                     legendOffset: -40,
                     legendPosition: 'middle'
                 }}
@@ -174,4 +156,4 @@ const GraphVolatility = () => {
     );
 }
  
-export default GraphVolatility;
+export default Graph;
