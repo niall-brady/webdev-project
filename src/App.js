@@ -1,22 +1,11 @@
 import './App.css';
-import { Button } from '@mui/material';
-// import { LoremIpsum } from "lorem-ipsum";
-import { useState/*, useEffect*/} from 'react';
+import { Button, Tab, Tabs } from '@mui/material';
+import { useState } from 'react';
 import GraphVolatility from './components/graphVolatility';
-
-// const lorem = new LoremIpsum({
-//   sentencesPerParagraph: {
-//     max: 8,
-//     min: 4
-//   },
-//   wordsPerSentence: {
-//     max: 16,
-//     min: 4
-//   }
-// });
 
 function App() {
   const [name, setName] = useState("Niall");
+  const [value, setValue] = useState("one");
 
   function changeName() {
     if (name==="Niall") {
@@ -31,8 +20,36 @@ function App() {
       <div className="content">
         <h1>Hello There, {name}</h1>
         <Button onClick={changeName}>Change Name</Button>
-        <h2>Volatility Graph</h2>
-        <GraphVolatility />
+        <Tabs
+          value={value}
+          onChange={(event, newValue) => {setValue(newValue)}}
+          textColor="secondary"
+          indicatorColor="secondary"
+          aria-label="secondary tabs example"
+        >
+          <Tab value="one" label="Current Prices" />
+          <Tab value="two" label="Running Average Price" />
+          <Tab value="three" label="Last Value Cache" />
+          <Tab value="four" label="Volatility Graph" />
+        </Tabs>
+        {value === "one" && 
+          <p>
+            lol1
+          </p>
+        }
+        {value === "two" &&
+          <p>
+            lol2
+          </p>
+        }
+        {value === "three" &&
+          <p>
+            lol3
+          </p>
+        }
+        {value === "four" &&
+          <GraphVolatility />
+        }
       </div>
     </div>
   );

@@ -69,7 +69,6 @@ function ConvertData(result){
 
                     // Adding id (unchanged) and data (updated) to symList at index symCounter
                     symList[symCounter] = {id:symList[symCounter].id, data:xyList}
-                    
                 }
             }
             // Setting data variable to the symList created
@@ -103,7 +102,12 @@ const GraphVolatility = () => {
             <ResponsiveLine
                 data={data}
                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-                xScale={{ type: 'linear', min: 'auto', max: 'auto' }}
+                xScale={{
+                    type: 'linear',
+                    min: 'auto',
+                    max: 'auto'
+                }}
+                xFormat="time:%Y-%m-%dT%H:%M:%S.%L%Z"
                 yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
                 axisTop={null}
                 axisRight={null}
@@ -146,6 +150,7 @@ const GraphVolatility = () => {
                         symbolSize: 12,
                         symbolShape: 'circle',
                         symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                        //onClick: this.toggle,
                         effects: [
                             {
                                 on: 'hover',
