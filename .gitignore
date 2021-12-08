@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignoring Niall's bat files
+
+git-pull.bat
+git-push.bat
+git-status.bat
+startReact.bat
