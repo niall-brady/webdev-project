@@ -3,6 +3,7 @@ import { Button, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import GraphVolatility from './components/graphVolatility';
 import Graph from './components/graph';
+import QuestionFourPlot from './components/QuestionFourPlot';
 
 function App() {
   const [name, setName] = useState("!");
@@ -43,9 +44,7 @@ function App() {
           <Graph />
         }
         {value === "three" &&
-          <p>
-            Much empty
-          </p>
+          <QuestionFourPlot />
         }
         {value === "four" &&
           <GraphVolatility />
