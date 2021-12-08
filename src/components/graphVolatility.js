@@ -150,7 +150,6 @@ const GraphVolatility = () => {
                         symbolSize: 12,
                         symbolShape: 'circle',
                         symbolBorderColor: 'rgba(0, 0, 0, .5)',
-                        //onClick: this.toggle,
                         effects: [
                             {
                                 on: 'hover',

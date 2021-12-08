@@ -12,6 +12,7 @@ function App() {
       setName("General Kenobi");
     } else {
       setName("Niall");
+      console.log((new Date()).toDateString())
     }
   }
 
@@ -34,17 +35,17 @@ function App() {
         </Tabs>
         {value === "one" && 
           <p>
-            lol1
+            Much empty
           </p>
         }
         {value === "two" &&
           <p>
-            lol2
+            Much empty
           </p>
         }
         {value === "three" &&
           <p>
-            lol3
+            Much empty
           </p>
         }
         {value === "four" &&
