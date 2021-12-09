@@ -1,4 +1,11 @@
-
+:root {
+  --dark-grey: #4C5454;
+  --red: #FF715B;
+  --white: #FFFFFF;
+  --green: #1EA896;
+  --yellow: #EFCA08;
+  --blue: #39A0ED;
+}
 
 .App {
   text-align: center;
@@ -6,13 +13,19 @@
 
 body {
   margin: 0 10%;
+  /*background-color: var(--dark-grey);
+  color: var(--white);*/
 }
 
 .plot {
-  height: 500px;
-  width: 1000px;
+  height: 600px;
+  width: 100%;
 }
 
 .Title {
-  background-color: white;
+  color: var(--red);
+}
+
+.Heading {
+  color: var(--blue);
 }

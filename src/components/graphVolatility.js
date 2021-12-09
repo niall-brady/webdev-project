@@ -106,6 +106,8 @@ const GraphVolatility = () => {
     else
     // (className set for the plot so that it can be styled in 'App.css' by referring to that name)
     return (
+        <div>
+        <h2 className="Heading" >Volatility Graph</h2>
         <div className="plot">
             <ResponsiveLine
                 data={data}
@@ -177,6 +179,7 @@ const GraphVolatility = () => {
                     }
                 ]}
             />
+        </div>
         </div>
     );
 }
