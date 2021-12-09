@@ -15,6 +15,7 @@ In the directory of this project (where you can see the *.git* folder) in order 
 ## ***git-push.bat***
 **When to Use:**
 - When you want to update the current build with your new code
+- It will ask for a commit comment before committing ie. "Improved layout of table", etc.
 
 ## ***git-status.bat***
 **When to Use:**
