@@ -4,6 +4,7 @@ import { useState } from 'react';
 import GraphVolatility from './components/graphVolatility';
 import Graph from './components/graph';
 import QuestionFourPlot from './components/QuestionFourPlot';
+import PostRequest from "./components/PostRequest";
 
 function App() {
   const [name, setName] = useState("!");
@@ -36,9 +37,7 @@ function App() {
           <Tab value="four" label="Volatility Graph" />
         </Tabs>
         {value === "one" && 
-          <p>
-            Much empty
-          </p>
+            <PostRequest />
         }
         {value === "two" &&
           <Graph />
