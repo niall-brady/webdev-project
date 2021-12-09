@@ -1,12 +1,18 @@
+
+
 .App {
   text-align: center;
 }
 
 body {
-  margin: 0 20%;
+  margin: 0 10%;
 }
 
 .plot {
   height: 500px;
-  width: 900px;
+  width: 1000px;
+}
+
+.Title {
+  background-color: white;
 }

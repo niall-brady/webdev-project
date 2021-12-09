@@ -5,39 +5,31 @@ import GraphVolatility from './components/graphVolatility';
 import Graph from './components/graph';
 import QuestionFourPlot from './components/QuestionFourPlot';
 import PostRequest from "./components/PostRequest";
+import QuestionFiveGet from "./components/QuestionFiveGet"
 
 function App() {
-  const [name, setName] = useState("!");
   const [value, setValue] = useState("one");
-
-  function changeName() {
-    if (name==="!") {
-      setName(", General Kenobi");
-    } else {
-      setName("!");
-      console.log((new Date()).toDateString())
-    }
-  }
 
   return (
     <div className="App">
       <div className="content">
-        <h1>Hello There{name}</h1>
-        <Button onClick={changeName}>Change Title</Button>
+        <h1 className="Title">Market Data Stats</h1>
         <Tabs
           value={value}
           onChange={(event, newValue) => {setValue(newValue)}}
           textColor="secondary"
           indicatorColor="secondary"
           aria-label="secondary tabs example"
+          centered
         >
           <Tab value="one" label="Current Prices" />
           <Tab value="two" label="Running Average Price" />
           <Tab value="three" label="Last Value Cache" />
-          <Tab value="four" label="Volatility Graph" />
+          <Tab value="four" label="Highest Traded" />
+          <Tab value="five" label="Volatility Graph" />
         </Tabs>
         {value === "one" && 
-            <PostRequest />
+          <PostRequest />
         }
         {value === "two" &&
           <Graph />
@@ -46,6 +38,9 @@ function App() {
           <QuestionFourPlot />
         }
         {value === "four" &&
+          <QuestionFiveGet />
+        }
+        {value === "five" &&
           <GraphVolatility />
         }
       </div>

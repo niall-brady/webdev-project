@@ -60,7 +60,7 @@ function ConvertData(result){
                     xyList = []
 
                     // Setting first element of xylist to this item's dat & incrementing xyListCounter
-                    xyList[xyListCounter] = {x:result[i].time, y:result[i].devPrice}
+                    xyList[xyListCounter] = {x:result[i].time, y:(result[i].devPrice).toFixed(2)}
                     xyListCounter++
 
                     // Adding id (sym) and data (xyList) to symList at index symCounter
@@ -72,7 +72,7 @@ function ConvertData(result){
                 // Other times finding same sym
                 else {
                     // Setting element of xylist to this item's dat at index xyListCounter
-                    xyList[xyListCounter] = {x:result[i].time, y:result[i].devPrice}
+                    xyList[xyListCounter] = {x:result[i].time, y:(result[i].devPrice).toFixed(2)}
                     xyListCounter++ // Incrementing xyListCounter
 
                     // Adding id (unchanged) and data (updated) to symList at index symCounter
@@ -115,9 +115,16 @@ const GraphVolatility = () => {
                     min: 'auto',
                     max: 'auto'
                 }}
-                xFormat="time:%Y-%m-%dT%H:%M:%S.%L%Z"
-                yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
+                xFormat="time:%Y-%m-%dT%H:%M:%S"
+                yScale={{
+                    type: 'linear',
+                    min: 'auto',
+                    max: 'auto',
+                    stacked: false,
+                    reverse: false
+                }}
                 axisTop={null}
+                colors={{scheme: 'nivo'}}
                 axisRight={null}
                 axisBottom={{
                     orient: 'bottom',
