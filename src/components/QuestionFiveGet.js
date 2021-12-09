@@ -226,7 +226,7 @@ if (loadingOne) {
                 <br/>
                 
                 <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Size: {outIdOne[0].size}
+                Size: {Number((outIdOne[0].size).toPrecision(5))}
                 </Typography>
 
         </Paper>
@@ -246,7 +246,7 @@ if (loadingOne) {
                 <br/>
             
             <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Size: {outIdTwo[0].size}
+                Size: {Number((outIdTwo[0].size).toPrecision(5))}
             </Typography>
 
         </Paper>
@@ -265,7 +265,7 @@ if (loadingOne) {
                 <br/>
 
             <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Size: {outIdThree[0].size}
+                Size: {Number((outIdThree[0].size).toPrecision(5))}
             </Typography>
 
         </Paper>
