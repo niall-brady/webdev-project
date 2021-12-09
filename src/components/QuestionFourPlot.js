@@ -53,12 +53,9 @@ const QuestionFourPlot = () => {
     // Column set up for material-table //
     //------------------------------------------------
     const columns = [
-        { field: 'sym', title: 'Sym'},
-        { field: 'price', title: 'Last Price'},
-        {
-          field: 'priceChange',
-          title: 'Price Change',
-        },
+        { field: 'sym', title: 'Sym', cellStyle:{textAlign: "right"}, align: "right" },
+        { field: 'price', title: 'Last Price', cellStyle:{textAlign: "right"}, titleStyle:{textAlign: "right"}, align: "right"},
+        { field: 'priceChange', title: 'Price Change', cellStyle:{textAlign: "right"}, align: "right" },
       ];
     
       //----------------------------------------------------------------------------
@@ -66,78 +63,113 @@ const QuestionFourPlot = () => {
       // Same for both MUI and material-table
       // Only issue here is that "rows" uses hardcoding.
       //----------------------------------------------------------------------------
-      const rows = [
-        {
-          id: 1,
-          sym: outId[0].sym,
-          price: outId[0].lastPrice,
-          priceChange: outId[0].diffPrice[0],
-          editable: true,
-        },
-        {
-          id: 2,
-          sym: outId[1].sym,
-          price: outId[1].lastPrice,
-          priceChange: outId[1].diffPrice[0], 
-          editable: true,
-        },
-        {
-          id: 3,
-          sym: outId[2].sym,
-          price: outId[2].lastPrice,
-          priceChange: outId[2].diffPrice[0],  
-          editable: true, 
-        },
-        {
-          id: 4,
-          sym: outId[3].sym,
-          price: outId[3].lastPrice,
-          priceChange: outId[3].diffPrice[0], 
-          editable: true,
-        },
-        {
-          id: 5,
-          sym: outId[4].sym,
-          price: outId[4].lastPrice,
-          priceChange: outId[4].diffPrice[0], 
-          editable: true,
-        },
-        {
-        id: 6,
-        sym: outId[5].sym,
-        price: outId[5].lastPrice,
-        priceChange: outId[5].diffPrice[0], 
-        editable: true,
-        },
-        {
-        id: 7,
-        sym: outId[6].sym,
-        price: outId[6].lastPrice,
-        priceChange: outId[6].diffPrice[0], 
-        editable: true,
-        },
-        {
-        id: 8,
-        sym: outId[7].sym,
-        price: outId[7].lastPrice,
-        priceChange: outId[7].diffPrice[0], 
-        editable: true,
-        },
-        {
-        id: 9,
-        sym: outId[8].sym,
-        price: outId[8].lastPrice,
-        priceChange: outId[8].diffPrice[0], 
-        editable: true,
-        },
-        {
-        id: 10,
-        sym: outId[9].sym,
-        price: outId[9].lastPrice,
-        priceChange: outId[9].diffPrice[0], 
-        editable: true,
-        },
-    ];
+
+      var arrowDiff=[] // array to put price change + arrow data into
+
+      // for loop to append arrow to end of Price Change data
+
+      for (var i = 0; i < outId.length; i++) {
+        if ( Number(outId[i].diffPrice[0]).toFixed(2) > 0) {
+          arrowDiff[i]=(Number(outId[i].diffPrice[0]).toFixed(2) +" 🡱")
+        }
+        else if ( Number(outId[i].diffPrice[0]).toFixed(2) < 0) {
+          arrowDiff[i]=(Number(outId[i].diffPrice[0]).toFixed(2) +" 🡳")
+        }
+        else {arrowDiff[i]=(Number(outId[i].diffPrice[0]).toFixed(2) + " ‒")}
+      }
+
+      //set up column data and number of rows using a for loop. Extracts data from outId
+      var rows=[]
+      for (var i = 0; i < outId.length; i++) {
+        rows[i] = {
+          id: i,
+          sym: outId[i].sym,
+          price: Number(outId[i].lastPrice).toFixed(2),
+          priceChange: (arrowDiff[i]),
+          colourChange:Number(outId[i].diffPrice[0]).toFixed(2), // this column is not shown but needed to change colour of table depending on price
+          editable: false,
+        }
+
+      }
+    
+
+    //------------------------------//
+    // Hardcode the rows
+    //------------------------------//
+
+    //   const rows = [
+    //     {
+    //       id: 1,
+    //       sym: outId[0].sym,
+    //       price: Number(outId[0].lastPrice).toFixed(2),
+    //       priceChange: Number(outId[0].diffPrice[0]).toFixed(2),
+    //       editable: true,
+    //     },
+    //     {
+    //       id: 2,
+    //       sym: outId[1].sym,
+    //       price: Number(outId[1].lastPrice).toFixed(2),
+    //       priceChange:(Number(outId[1].diffPrice[0]).toFixed(2) + " 🡱🡳")
+    //       //priceChange:arrowDiff[1],
+    //       editable: true,
+    //     },
+    //     {
+    //       id: 3,
+    //       sym: outId[2].sym,
+    //       price: Number(outId[2].lastPrice).toFixed(2),
+    //       priceChange: Number(outId[2].diffPrice[0]).toFixed(2),  
+    //       editable: true, 
+    //     },
+    //     {
+    //       id: 4,
+    //       sym: outId[3].sym,
+    //       price: Number(outId[3].lastPrice).toFixed(2),
+    //       priceChange: Number(outId[3].diffPrice[0]).toFixed(2), 
+    //       editable: true,
+    //     },
+    //     {
+    //       id: 5,
+    //       sym: outId[4].sym,
+    //       price: Number(outId[4].lastPrice).toFixed(2),
+    //       priceChange: Number(outId[4].diffPrice[0]).toFixed(2), 
+    //       editable: true,
+    //     },
+    //     {
+    //     id: 6,
+    //     sym: outId[5].sym,
+    //     price: Number(outId[5].lastPrice).toFixed(2),
+    //     priceChange: Number(outId[5].diffPrice[0]).toFixed(2), 
+    //     editable: true,
+    //     },
+    //     {
+    //     id: 7,
+    //     sym: outId[6].sym,
+    //     price: Number(outId[6].lastPrice).toFixed(2),
+    //     priceChange: Number(outId[6].diffPrice[0]).toFixed(2), 
+    //     editable: true,
+    //     },
+    //     {
+    //     id: 8,
+    //     sym: outId[7].sym,
+    //     price: Number(outId[7].lastPrice).toFixed(2),
+    //     priceChange: Number(outId[7].diffPrice[0]).toFixed(2), 
+    //     editable: true,
+    //     },
+    //     {
+    //     id: 9,
+    //     sym: outId[8].sym,
+    //     price: Number(outId[8].lastPrice).toFixed(2),
+    //     priceChange: Number(outId[8].diffPrice[0]).toFixed(2), 
+    //     editable: true,
+    //     },
+    //     {
+    //     id: 10,
+    //     sym: outId[9].sym,
+    //     price: Number(outId[9].lastPrice).toFixed(2),
+    //     priceChange: Number(outId[9].diffPrice[0]).toFixed(2), 
+    //     editable: true,
+    //     },
+    // ];
 
     // ---------------------------------------------------------------
     // Plotting if using MUI
@@ -157,23 +189,23 @@ const QuestionFourPlot = () => {
     // Plotting if using material-tables
     // ---------------------------------------------------------------
      return (
-      <div style={{ height: 650, width: '55%' }}>
+      <div style={{ height: 650, width: '35%' }}>
         <MaterialTable
           data={rows} 
           columns={columns} 
-          title='Sym and Price'
+          title='Last Price and Price Change by Sym'
          // hideFooterPagination={true}
 
          options={{   
           //rowStyle: {backgroundColor: '#E3FEDF},
           rowStyle: rowData => {
-            if(rowData.priceChange > 0) {
+            if(rowData.colourChange > 0) { // before was hardcoded, to use hardcoding have to ref rowData.priceChange
               return {backgroundColor: '#E3FEDF'};
             }
-             else if (rowData.priceChange === 0) {
-              return {backgroundColor: '#FCFEDF'}; 
+             else if (rowData.colourChange < 0) {
+              return {backgroundColor: '#FEE3DF'}; 
              }
-            else return { backgroundColor: '#FEE3DF'}
+            else return { backgroundColor: '#FFFFFF'}
           },
           search:false,
           paging: false
