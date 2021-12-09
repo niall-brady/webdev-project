@@ -3,7 +3,6 @@ import {useEffect, useState} from 'react';
 export default function ConvertData(result, yAxisName) {
     /*
         This function is needed to sort the data into a format readable by nivo
-        (See exampleData above)
     
         Looping through results,
         getting unique syms,

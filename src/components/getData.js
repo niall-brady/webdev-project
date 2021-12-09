@@ -18,35 +18,8 @@ function GetVolResult() {
   // const [volDate, setVolDate] = useState(null);
 
   useEffect(() => {
-    // var presentToday = new Date()
-
-    // var DD = ("0"+presentToday.getDay()).slice(-2) // 2 digit Day
-    // var MM = ("0"+presentToday.getMonth()).slice(-2) // 2 digit month
-    // var YYYY = presentToday.getFullYear() // 4 digit year
-    // var startToday = YYYY+"."+MM+"."+DD
-
-    // var hh = ("0"+presentToday.getHours()).slice(-2) // 2 digit hour
-    // var mm = ("0"+presentToday.getMinutes()).slice(-2) // 2 digit minute
-    // var ss = ("0"+presentToday.getSeconds()).slice(-2) // 2 digit second
-    // presentToday = startToday+"D"+hh+":"+mm+":00.000000000"
-    // startToday = startToday+"D00:00:00.000000000"
-
-    // var query = "select devPrice:dev price by 0D00:30 xbar time,sym from trade where time within "+startToday+" "+presentToday
-    // // console.log(query)
 
     axios.post(url,
-      // {
-      //   // Old Query
-      //   "function_name": ".dataaccess.qrest",
-      //   "arguments":{
-      //     "tablename":"trade",
-      //     "starttime":startToday,
-      //     "endtime":presentToday,
-      //     "freeformby":"sym",
-      //     "timebar":"(30;\\\"minute\\\";\\\"time\\\")",
-      //     "aggregations":"(enlist`dev)!(enlist`price)"
-      //   }
-      // },
       {
         "function_name": "string",
         "arguments": {
@@ -76,7 +49,6 @@ function GetVolResult() {
   }, []) // This useEffect is only ran when the page starts
 
   // Returning result, loading and error variables as an object
-  // console.log(result)
   return {result, loading, error};
 
 }
