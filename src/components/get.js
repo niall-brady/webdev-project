@@ -31,7 +31,7 @@ function GetResult() {
         "function_name": ".dataaccess.qrest",
         "arguments":{
           "db":"rdb, hdb",
-          "query":"select avgsPrice: avgs price by 0D00:30 xbar time, sym from trade where time within (.z.P-.z.N;.z.P)"
+          "query":"select avgsPrice: last avgs price by 0D00:30 xbar time, sym from trade where time within (.z.P-.z.N;.z.P)"
         }
       },
       {
@@ -49,7 +49,6 @@ function GetResult() {
       }
     )
       .then(res => {
-        console.log (res.data.result)
         setResult(res.data.result)
       })// setResult(res.data.result)})  // This is the output if there's no errors
       .catch(err => {setError(err)})              // This is the output if there is a error
