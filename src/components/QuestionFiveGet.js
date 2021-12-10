@@ -89,10 +89,17 @@ export default function QuestionFiveGet() {
                          );        
             // console log --------
             //console.log(response.data.result);
- 
+
+            // failsafe if null
+            if (response.data.result[0].size === null) {
+                setOutIdTwo([{size:0, sym:"N/A"}])
+                setLoadingTwo(false)
+            }
             // define variables ------------------------------------------//
-             setOutIdTwo(response.data.result);
-             setLoadingTwo(false);
+            else{
+                setOutIdTwo(response.data.result);
+                setLoadingTwo(false);
+            }
          };
 
         //---------------------------------------------------------------------------------------------------- 
@@ -113,10 +120,17 @@ export default function QuestionFiveGet() {
                              );        
                 // console log --------
                 //console.log(response.data.result);
-     
+
+                // failsafe if null
+                if (response.data.result[0].size === null) {
+                    setOutIdThree([{size:0, sym:"N/A"}])
+                    setLoadingThree(false)
+                }
                 // define variables ------------------------------------------//
-                 setOutIdThree(response.data.result);
-                 setLoadingThree(false);
+                else {
+                    setOutIdThree(response.data.result);
+                    setLoadingThree(false);
+                }
              };
 
      
