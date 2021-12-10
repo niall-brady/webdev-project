@@ -21,12 +21,13 @@ function App() {
           indicatorColor="secondary"
           aria-label="secondary tabs example"
           centered
+          variant='fullWidth'
         >
-          <Tab value="one" label="Current Prices" />
-          <Tab value="two" label="Running Average Price" />
-          <Tab value="three" label="Last Value Cache" />
-          <Tab value="four" label="Highest Traded" />
-          <Tab value="five" label="Volatility Graph" />
+          <Tab value="one" label="Current Prices" wrapped={true}/>
+          <Tab value="two" label="Running Average Price" wrapped={true} />
+          <Tab value="three" label="Last Value Cache" wrapped={true}/>
+          <Tab value="four" label="Highest Traded" wrapped={true}/>
+          <Tab value="five" label="Volatility Graph" wrapped={true} />
         </Tabs>
         {value === "one" && 
           <PostRequest />
