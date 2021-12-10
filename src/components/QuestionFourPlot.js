@@ -12,7 +12,8 @@ import * as React from 'react';
 import QuestionFourGet from "./QuestionFourGet";
 
 // Material Table imports
-import MaterialTable from 'material-table';
+import MaterialTable from '@material-table/core';
+import {ArrowUpward} from '@material-ui/icons'
 
 // MUI Imports //
 // import Box from '@mui/material/Box';
@@ -213,8 +214,14 @@ const QuestionFourPlot = () => {
           }, 
           search:false,
           paging: false,
-          padding:'dense',          
+          padding:'dense', 
+          sorting:true,         
         }}
+        
+        // fixes sort arrow issue
+        icons={{
+          SortArrow: React.forwardRef((props, ref) => <ArrowUpward {...props} fontSize="small" ref={ref}/>)
+       }}
 
         />
     </div>
