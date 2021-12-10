@@ -6,11 +6,13 @@ import Graph from './components/graph';
 import QuestionFourPlot from './components/QuestionFourPlot';
 import PostRequest from "./components/PostRequest";
 import QuestionFiveGet from "./components/QuestionFiveGet"
+import { StylesProvider } from '@material-ui/core/styles';
 
 function App() {
   const [value, setValue] = useState("one");
 
   return (
+    <StylesProvider injectFirst> 
     <div className="App">
       <div className="content">
         <h1 className="Title">Market Data Stats</h1>
@@ -46,6 +48,7 @@ function App() {
         }
       </div>
     </div>
+    </StylesProvider>
   );
 }
 
