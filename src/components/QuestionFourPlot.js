@@ -188,8 +188,12 @@ const QuestionFourPlot = () => {
     // ---------------------------------------------------------------
     // Plotting if using material-tables
     // ---------------------------------------------------------------
-     return (
-      <div style={{ height: 650, width: '35%' }}>
+    
+   // create function to plot table
+    const plottable = () => {
+    return (
+
+      <div style={{ height: 650, width: '45%' }}>
         <MaterialTable
           data={rows} 
           columns={columns} 
@@ -206,16 +210,27 @@ const QuestionFourPlot = () => {
               return {backgroundColor: '#FEE3DF'}; 
              }
             else return { backgroundColor: '#FFFFFF'}
-          },
+          }, 
           search:false,
-          paging: false
-          
+          paging: false,
+          padding:'dense',          
         }}
 
         />
     </div>
     );
-  
+      }
+
+    // call plotting.
+    return (
+    <div align="center">   
+     <h1>
+        Last Value Cache
+      </h1>
+      {plottable()}
+      </div>    
+    );
+
 
 }
 

@@ -195,83 +195,94 @@ if (loadingOne) {
 // Advancec Plot, 3 Paper MUI elements inside a MUI Box element
 //--------------------------------------------------------------
 
-    return (
+    const plottable = () => {
+        return (
+
+            // Box styling elements
+            <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                '& > :not(style)': {
+                m: 1,
+                width: 310,
+                height: 250,
+                margin:'auto',
+                },
+            }}
+            >
+
+            {/* Paper for past hour */}
+            <Paper elevation={3} >
+
+                <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
+                    Past Hour
+                    </Typography>
+                    <br/>
+                
+                    <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                    Sym: {outIdOne[0].sym}
+                    </Typography>
+                    <br/>
+                    
+                    <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                    Size: {Number((outIdOne[0].size).toPrecision(5))}
+                    </Typography>
+
+            </Paper>
 
 
-        // Box styling elements
-        <Box
-        sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            '& > :not(style)': {
-            m: 1,
-            width: 310,
-            height: 250,
-            margin:'auto',
-            },
-        }}
-        >
+            {/* Paper for past day */}
+            <Paper elevation={3} >
 
-        {/* Paper for past hour */}
-        <Paper elevation={3} >
-
-            <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
-                Past Hour
+                <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
+                    Past Day                
                 </Typography>
                 <br/>
-               
+
                 <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Sym: {outIdOne[0].sym}
+                    Sym: {outIdTwo[0].sym}
                 </Typography>
-                <br/>
+                    <br/>
                 
                 <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Size: {Number((outIdOne[0].size).toPrecision(5))}
+                    Size: {Number((outIdTwo[0].size).toPrecision(5))}
                 </Typography>
 
-        </Paper>
+            </Paper>
 
+            {/* Paper for past week */}
+            <Paper elevation={3} >
 
-        {/* Paper for past day */}
-        <Paper elevation={3} >
+                <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
+                    Past Week
+                </Typography>
+                    <br/>
 
-            <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
-                Past Day                
-            </Typography>
-            <br/>
+                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                    Sym: {outIdThree[0].sym}
+                </Typography>    
+                    <br/>
 
-            <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Sym: {outIdTwo[0].sym}
-            </Typography>
-                <br/>
-            
-            <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Size: {Number((outIdTwo[0].size).toPrecision(5))}
-            </Typography>
+                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                    Size: {Number((outIdThree[0].size).toPrecision(5))}
+                </Typography>
 
-        </Paper>
+            </Paper>
 
-        {/* Paper for past week */}
-        <Paper elevation={3} >
+            </Box>
+        );
+    }
 
-            <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
-                Past Week
-            </Typography>
-                <br/>
-
-            <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Sym: {outIdThree[0].sym}
-            </Typography>    
-                <br/>
-
-            <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
-                Size: {Number((outIdThree[0].size).toPrecision(5))}
-            </Typography>
-
-        </Paper>
-
-        </Box>
-    );
+    return (
+        <div align="center">   
+         <h1>
+            Highest Traded Instrument
+          </h1>
+          {plottable()}
+          </div>    
+        );
+    
 
 
 }
