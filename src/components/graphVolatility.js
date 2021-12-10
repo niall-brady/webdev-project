@@ -17,7 +17,11 @@ const GraphVolatility = () => {
     const data = ConvertData(result, "devPrice")
 
     // If still loading data
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return (<div>
+    <h2 className="Heading" >Volatility Graph</h2>
+    <h1>Loading...</h1>
+    </div>
+    )
 
     // Else if an error has occurred
     else if (error) console.log(error)
