@@ -4,7 +4,7 @@ import { useState } from 'react';
 import GraphVolatility from './components/graphVolatility';
 import Graph from './components/graph';
 import QuestionFourPlot from './components/QuestionFourPlot';
-import PostRequest from "./components/PostRequest";
+import FinalPrice from "./components/FinalPrice";
 import QuestionFiveGet from "./components/QuestionFiveGet"
 import { StylesProvider } from '@material-ui/core/styles';
 
@@ -32,7 +32,7 @@ function App() {
           <Tab value="five" label="Volatility Graph" wrapped={true} />
         </Tabs>
         {value === "one" && 
-          <PostRequest />
+          <FinalPrice />
         }
         {value === "two" &&
           <Graph />
