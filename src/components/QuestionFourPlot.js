@@ -205,10 +205,10 @@ const QuestionFourPlot = () => {
           //rowStyle: {backgroundColor: '#E3FEDF},
           rowStyle: rowData => {
             if(rowData.colourChange > 0) { // before was hardcoded, to use hardcoding have to ref rowData.priceChange
-              return {backgroundColor: '#E3FEDF'};
+              return {backgroundColor: '#E3FEDF'}; //#E3FEDF non colorblind friendly, (one #D0F1FF), (two #e7f7d5)
             }
              else if (rowData.colourChange < 0) {
-              return {backgroundColor: '#FEE3DF'}; 
+              return {backgroundColor: '#FEE3DF'}; //#FEE3DF non colorblind friendly, (one #FEE3DF), (two #f6d3e8)
              }
             else return { backgroundColor: '#FFFFFF'}
           }, 
@@ -231,9 +231,9 @@ const QuestionFourPlot = () => {
     // call plotting.
     return (
     <div align="center">   
-     <h1>
+     <h2 className="Heading">
         Last Value Cache
-      </h1>
+      </h2>
       {plottable()}
       </div>    
     );

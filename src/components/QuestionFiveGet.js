@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography';
 
+
 //***************************************************************************/
 // set up function and export that gets the data, called in QuestionFourPlot
 //***************************************************************************/
@@ -171,9 +172,9 @@ if (loadingOne) {
     return <div className="App">Loading...</div>;
    }
 
-    console.log(outIdOne); // log the data to the console
-    console.log(outIdTwo); // log the data to the console
-    console.log(outIdThree); // log the data to the console
+    // console.log(outIdOne); // log the data to the console
+    // console.log(outIdTwo); // log the data to the console
+    // console.log(outIdThree); // log the data to the console
 
     // I cannot get the outputs to export correctly, therefore have done plotting below
    // return (outIdOne,loadingOne,outIdTwo,loadingTwo,outIdThree,loadingThree); //return the outputs, mute if plotting
@@ -229,7 +230,7 @@ if (loadingOne) {
             {/* Paper for past hour */}
             <Paper elevation={3} >
 
-                <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
+                <Typography  variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
                     Past Hour
                     </Typography>
                     <br/>
@@ -289,10 +290,11 @@ if (loadingOne) {
     }
 
     return (
+        
         <div align="center">   
-         <h1>
+         <h2 className="Heading">
             Highest Traded Instrument
-          </h1>
+          </h2>
           {plottable()}
           </div>    
         );
