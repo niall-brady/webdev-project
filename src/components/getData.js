@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
 
-function GetVolResult() {
+function GetVolResult(days) {
   /*
     This function executes a query through qRest and returns the result
     (Niall's Volatility Graph Results)
@@ -11,22 +11,27 @@ function GetVolResult() {
   const [result, setResult] = useState(null);           // Initialising result
   const [loading, setLoading] = useState(true);         // Initialising loading boolean
   const [error, setError] = useState(null);             // Initialising error variable
-  
-  const queryTimeframe = "(.z.P-24:00;.z.P)"
-  
-
-  // const [volDate, setVolDate] = useState(null);
+  const [queryTimeFrame, setQueryTimeFrame] = useState("(.z.P-1D;.z.P)");
+  const [graphTickValues, setGraphTickValues] = useState("every 4 hours")
 
   useEffect(() => {
-
-    
+    if (days == 3) {
+      setQueryTimeFrame("(.z.P-3D;.z.P)")
+      setGraphTickValues("every 8 hours")
+    } else if (days == 2) {
+      setQueryTimeFrame("(.z.P-2D;.z.P)")
+      setGraphTickValues("every 6 hours")
+    } else if (days == 1) {
+      setQueryTimeFrame("(.z.P-1D;.z.P)")
+      setGraphTickValues("every 4 hours")
+    }
 
     axios.post(url,
       {
         "function_name": "string",
         "arguments": {
           "db": "rdb, hdb",
-          "query":"select devPrice:dev price by 0D00:30 xbar time,sym from trade where time within "+queryTimeframe
+          "query":"select devPrice:dev price by 0D00:30 xbar time,sym from trade where time within "+queryTimeFrame
         }
       },
       {
@@ -48,10 +53,10 @@ function GetVolResult() {
       })  // This is the output if there's no errors
       .catch(err => {setError(err)})              // This is the output if there is a error
       .finally(() => {setLoading(false)})         // This is outputted no matter what
-  }, []) // This useEffect is only ran when the page starts
+  }, [queryTimeFrame]) // This useEffect is only ran when the page starts
 
   // Returning result, loading and error variables as an object
-  return {result, loading, error};
+  return {result, loading, error, graphTickValues};
 
 }
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from '@nivo/line'
 import GetVolResult from "./getData";
-import { graphTickValues, graphXFormat, graphXTicks, themeGraph } from "./shared/graphVariables";
-import ConvertData from "./shared/graphFunctions.js"
+import { /*graphTickValues,*/ graphXFormat, graphXTicks, themeGraph } from "./shared/graphVariables";
+import ConvertData from "./shared/graphFunctions.js";
 import {showLoading} from "./shared/showLoading";
 
 /* 
@@ -11,8 +11,11 @@ import {showLoading} from "./shared/showLoading";
 
 // Exported graph component
 const GraphVolatility = () => {
+    // Date Range Choice
+    const [dayRange, setDayRange] = useState(1)
+
     // Getting result from qRest query
-    const {result, loading, error} = GetVolResult();
+    const {result, loading, error, graphTickValues} = GetVolResult(dayRange);
 
     // Converting result to be readable by nivo
     const data = ConvertData(result, "devPrice")
@@ -23,9 +26,7 @@ const GraphVolatility = () => {
     // Else if an error has occurred
     else if (error) console.log(error)
 
-    // Otherwise...
-    else
-    console.log(data)
+    // Otherwise...    
     // (className set for the plot so that it can be styled in 'App.css' by referring to that name)
     return (
         <div>

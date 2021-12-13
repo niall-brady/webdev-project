@@ -65,6 +65,18 @@ export default function ConvertData(result, yAxisName) {
                     symList[symCounter] = {id:symList[symCounter]['id'], data:xyList}
                 }
             }
+
+            // Sorting dates properly
+            xyList = []
+            for (var j = 0; j < symList.length; j++) {
+                xyList = symList[j].data
+                xyList = xyList.sort((a, b) => {
+                    return new Date(a.x).getTime() - new Date(b.x).getTime()
+                })
+
+                symList[j] = {id:symList[j].id, data:xyList}
+            }
+
             // Setting data variable to the symList created
             setData(symList)
         }
