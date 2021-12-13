@@ -9,6 +9,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {showLoading} from "./shared/showLoading";
 
 // MUI Imports
 import Box from '@mui/material/Box';
@@ -162,15 +163,19 @@ export default function QuestionFiveGet() {
 }, []);
 
 // Don't continue until data has been loaded
-if (loadingOne) {
-    return <div className="App">Loading...</div>;
-   }
-   else if (loadingTwo) {
-    return <div className="App">Loading...</div>;
-   }
-   else if (loadingThree) {
-    return <div className="App">Loading...</div>;
-   }
+// if (loadingOne) {
+//     return <div className="App">Loading...</div>;
+//    }
+//    else if (loadingTwo) {
+//     return <div className="App">Loading...</div>;
+//    }
+//    else if (loadingThree) {
+//     return <div className="App">Loading...</div>;
+//    }
+
+   if (loadingOne) {return showLoading}
+   else if (loadingTwo) {return showLoading}
+   else if (loadingThree) {return showLoading}
 
     // console.log(outIdOne); // log the data to the console
     // console.log(outIdTwo); // log the data to the console
@@ -210,6 +215,10 @@ if (loadingOne) {
 // Advancec Plot, 3 Paper MUI elements inside a MUI Box element
 //--------------------------------------------------------------
 
+const fsize = 22;
+const msize = 5;
+const hcolor = '#FF715B'
+
     const plottable = () => {
         return (
 
@@ -230,17 +239,17 @@ if (loadingOne) {
             {/* Paper for past hour */}
             <Paper elevation={3} >
 
-                <Typography  variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
+                <Typography  variant="h5" component="div" align="center" gutterBottom="false" mt={msize} color={hcolor} fontWeight="bold" >
                     Past Hour
                     </Typography>
                     <br/>
                 
-                    <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                    <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} fontStyle='italic'>
                     Sym: {outIdOne[0].sym}
                     </Typography>
                     <br/>
                     
-                    <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                    <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} >
                     Size: {Number((outIdOne[0].size).toPrecision(5))}
                     </Typography>
 
@@ -250,17 +259,17 @@ if (loadingOne) {
             {/* Paper for past day */}
             <Paper elevation={3} >
 
-                <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
+                <Typography variant="h5" component="div" align="center" gutterBottom="false" mt={msize} color={hcolor} fontWeight="bold" >
                     Past Day                
                 </Typography>
                 <br/>
 
-                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} fontStyle='italic'>
                     Sym: {outIdTwo[0].sym}
                 </Typography>
                     <br/>
                 
-                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} >
                     Size: {Number((outIdTwo[0].size).toPrecision(5))}
                 </Typography>
 
@@ -269,17 +278,17 @@ if (loadingOne) {
             {/* Paper for past week */}
             <Paper elevation={3} >
 
-                <Typography variant="h4" component="div" align="center" gutterBottom="false" mt={4} color='primary.main' fontWeight="bold" >
+                <Typography variant="h5" component="div" align="center" gutterBottom="false" mt={msize} color={hcolor} fontWeight="bold" >
                     Past Week
                 </Typography>
                     <br/>
 
-                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} fontStyle='italic' >
                     Sym: {outIdThree[0].sym}
                 </Typography>    
                     <br/>
 
-                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={24} >
+                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} >
                     Size: {Number((outIdThree[0].size).toPrecision(5))}
                 </Typography>
 
@@ -295,6 +304,9 @@ if (loadingOne) {
          <h2 className="Heading">
             Highest Traded Instrument
           </h2>
+
+          <br/>
+
           {plottable()}
           </div>    
         );
