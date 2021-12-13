@@ -56,9 +56,30 @@ const QuestionFourPlot = () => {
     // Column set up for material-table //
     //------------------------------------------------
     const columns = [
-        { field: 'sym', title: 'Sym', cellStyle:{textAlign: "right"}, align: "right" },
-        { field: 'price', title: 'Last Price', cellStyle:{textAlign: "right"}, titleStyle:{textAlign: "right"}, align: "right"},
-        { field: 'priceChange', title: 'Price Change', cellStyle:{textAlign: "right"}, align: "right" },
+       
+      // sym column
+      { field: 'sym', 
+          title: 'Sym', 
+          cellStyle:{textAlign: "right"}, 
+          align: "right", 
+          //customSort: (a, b) => a.sym - b.sym 
+        },
+        
+        // last price column, have added custom sorting so sorts correctly. Other columns sort fine so no custom sort needed.
+        { field: 'price', 
+          title: 'Last Price', 
+          cellStyle:{textAlign: "right"}, 
+          titleStyle:{textAlign: "right"}, 
+          align: "right", 
+          customSort: (a, b) => a.price - b.price
+        },
+        
+        // Price Change column
+        { field: 'priceChange', 
+          title: 'Price Change', 
+          cellStyle:{textAlign: "right"}, 
+          align: "right", 
+        },
       ];
     
       //----------------------------------------------------------------------------
