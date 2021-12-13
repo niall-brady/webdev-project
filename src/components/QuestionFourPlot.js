@@ -10,6 +10,7 @@
 
 import * as React from 'react';
 import QuestionFourGet from "./QuestionFourGet";
+import {showLoading} from "./shared/showLoading";
 
 // Material Table imports
 import MaterialTable from '@material-table/core';
@@ -31,9 +32,10 @@ const QuestionFourPlot = () => {
     //console.log(outId);
 
     // if loading, do not render table, needed as there will be no rendered data initially (if remove this you will get errors)
-    if (loading) {
-      return <div className="App">Loading...</div>;
-     }
+    // if (loading) {
+    //   return <div className="App">Loading...</div>;
+    //  }
+    if (loading) return showLoading
 
      //------------------------------------------------
     // Column set up for MUI //
@@ -54,9 +56,30 @@ const QuestionFourPlot = () => {
     // Column set up for material-table //
     //------------------------------------------------
     const columns = [
-        { field: 'sym', title: 'Sym', cellStyle:{textAlign: "right"}, align: "right" },
-        { field: 'price', title: 'Last Price', cellStyle:{textAlign: "right"}, titleStyle:{textAlign: "right"}, align: "right"},
-        { field: 'priceChange', title: 'Price Change', cellStyle:{textAlign: "right"}, align: "right" },
+       
+      // sym column
+      { field: 'sym', 
+          title: 'Sym', 
+          cellStyle:{textAlign: "right"}, 
+          align: "right", 
+          //customSort: (a, b) => a.sym - b.sym 
+        },
+        
+        // last price column, have added custom sorting so sorts correctly. Other columns sort fine so no custom sort needed.
+        { field: 'price', 
+          title: 'Last Price', 
+          cellStyle:{textAlign: "right"}, 
+          titleStyle:{textAlign: "right"}, 
+          align: "right", 
+          customSort: (a, b) => a.price - b.price
+        },
+        
+        // Price Change column
+        { field: 'priceChange', 
+          title: 'Price Change', 
+          cellStyle:{textAlign: "right"}, 
+          align: "right", 
+        },
       ];
     
       //----------------------------------------------------------------------------
@@ -205,7 +228,7 @@ const QuestionFourPlot = () => {
           //rowStyle: {backgroundColor: '#E3FEDF},
           rowStyle: rowData => {
             if(rowData.colourChange > 0) { // before was hardcoded, to use hardcoding have to ref rowData.priceChange
-              return {backgroundColor: '#E3FEDF'}; //#E3FEDF non colorblind friendly, (one #D0F1FF), (two #e7f7d5)
+              return {backgroundColor: '#D0F1FF'}; //#E3FEDF non colorblind friendly, (one #D0F1FF), (two #e7f7d5)
             }
              else if (rowData.colourChange < 0) {
               return {backgroundColor: '#FEE3DF'}; //#FEE3DF non colorblind friendly, (one #FEE3DF), (two #f6d3e8)
