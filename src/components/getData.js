@@ -12,19 +12,21 @@ function GetVolResult() {
   const [loading, setLoading] = useState(true);         // Initialising loading boolean
   const [error, setError] = useState(null);             // Initialising error variable
   
-
+  const queryTimeframe = "(.z.P-24:00;.z.P)"
   
 
   // const [volDate, setVolDate] = useState(null);
 
   useEffect(() => {
 
+    
+
     axios.post(url,
       {
         "function_name": "string",
         "arguments": {
           "db": "rdb, hdb",
-          "query":"select devPrice:dev price by 0D00:30 xbar time,sym from trade where time within (.z.P-.z.N;.z.P)"
+          "query":"select devPrice:dev price by 0D00:30 xbar time,sym from trade where time within "+queryTimeframe
         }
       },
       {

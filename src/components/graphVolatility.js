@@ -74,6 +74,9 @@ const GraphVolatility = () => {
                 pointBorderColor={{ from: 'serieColor' }}
                 pointLabelYOffset={-12}
                 useMesh={true}
+                theme={{
+                    legends: { hidden: { text: { textDecoration: 'line-through' } } },
+                }}
                 legends={[
                     {
                         anchor: 'bottom-right',
@@ -86,6 +89,7 @@ const GraphVolatility = () => {
                         itemWidth: 80,
                         itemHeight: 20,
                         itemOpacity: 0.75,
+                        toggleSerie: true,
                         symbolSize: 12,
                         symbolShape: 'circle',
                         symbolBorderColor: 'rgba(0, 0, 0, .5)',
