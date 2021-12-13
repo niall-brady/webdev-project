@@ -7,7 +7,7 @@ export default function ConvertData(result, yAxisName) {
         Looping through results,
         getting unique syms,
         sorting each unique sym into its own object,
-        appending x (Time) and y's (devPrice) relating to that sym into that object's data array
+        appending x (Time) and y's (devPrice or avgsPrice) relating to that sym into that object's data array
     */
 
     const [data, setData] = useState(null)
