@@ -29,3 +29,9 @@ body {
 .Heading {
   color: var(--blue);
 }
+
+.Loading {
+  text-align: center;
+  padding-top: 20vh;
+  color: black;
+}

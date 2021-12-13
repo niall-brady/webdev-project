@@ -3,6 +3,7 @@ import { ResponsiveLine } from '@nivo/line'
 import GetVolResult from "./getData";
 import { graphTickValues, graphXFormat, graphXTicks, themeGraph } from "./shared/graphVariables";
 import ConvertData from "./shared/graphFunctions.js"
+import {showLoading} from "./shared/showLoading";
 
 /* 
     (Niall's Volatility Graph)
@@ -17,13 +18,14 @@ const GraphVolatility = () => {
     const data = ConvertData(result, "devPrice")
 
     // If still loading data
-    if (loading) return (<h1>Loading...</h1>)
+    if (loading) return showLoading
 
     // Else if an error has occurred
     else if (error) console.log(error)
 
     // Otherwise...
     else
+    console.log(data)
     // (className set for the plot so that it can be styled in 'App.css' by referring to that name)
     return (
         <div>
