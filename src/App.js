@@ -7,6 +7,7 @@ import QuestionFourPlot from './components/QuestionFourPlot';
 import FinalPrice from "./components/FinalPrice";
 import QuestionFiveGet from "./components/QuestionFiveGet"
 import { StylesProvider } from '@material-ui/core/styles';
+import logo from './logo_shrinked.png';
 
 function App() {
   const [value, setValue] = useState("one");
@@ -15,7 +16,13 @@ function App() {
     <StylesProvider injectFirst> 
     <div className="App">
       <div className="content">
-        <h1 className="Title">Market Data Stats</h1>
+        {/* <h1 className="Title">Market Data Stats</h1>  */} {/* Previous Title */}
+
+        <h1 className="text-left-right">
+          <span className="Title">Market Data Stats</span>
+          <img src={logo} className="byline" alt="logo" />
+        </h1>
+
         <Tabs
           value={value}
           onChange={(event, newValue) => {setValue(newValue)}}

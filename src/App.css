@@ -24,6 +24,9 @@ body {
 
 .Title {
   color: var(--red);
+  left: 372px;
+  position: absolute;
+  padding-top: 30px;
 }
 
 .Heading {
@@ -34,4 +37,21 @@ body {
   text-align: center;
   padding-top: 20vh;
   color: black;
+}
+
+.text-left-right {
+  text-align: right;
+  position: relative;
+}
+
+/* .left-text {
+  left: 0;
+  position: absolute;
+  font-size: 32px;
+  color: rgb(0, 0, 0);
+} */
+
+.byline {
+  font-size: 32px;
+  color: rgb(0, 0, 0);
 }
