@@ -18,7 +18,7 @@ export default function GetPrice() {
           arguments: {
             db: "rdb",
             query:
-              "select current_price: last price, min_price: min price, max_price: max price by sym from trade",
+              "select time: `time$(last time), current_price: last price, min_price: min price, max_price: max price by sym from trade",
           },
         },
         {
