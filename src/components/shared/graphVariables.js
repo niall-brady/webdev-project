@@ -1,6 +1,6 @@
 let themeGraph = "set1"
-let graphXTicks = "%y.%m.%d %H:%M"
+let graphXTicks = "%Y-%b-%d %H:%M"
 let graphTickValues = "every 2 hours"
-let graphXFormat = "time:%Y.%m.%d %H:%M:%S"
+let graphXFormat = "time:%Y-%b-%d %H:%M"
 
 export {themeGraph, graphXTicks, graphTickValues, graphXFormat}

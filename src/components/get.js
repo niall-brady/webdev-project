@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
 
-function GetResult() {
+function GetResult(days) {
   /*
     This function executes a query through qRest and returns the result
     (Conor's Volatility Graph Results)
@@ -11,19 +11,20 @@ function GetResult() {
   const [result, setResult] = useState(null);           // Initialising result
   const [loading, setLoading] = useState(true);         // Initialising loading boolean
   const [error, setError] = useState(null);             // Initialising error variable
+  const [queryTimeFrame, setQueryTimeFrame] = useState("(.z.P-1D;.z.P)");
+  const [graphTickValues, setGraphTickValues] = useState("every 4 hours");
 
   useEffect(() => {
-    var presentToday = new Date()
-
-    var DD = ("0"+presentToday.getDay()).slice(-2) // 2 digit Day
-    var MM = ("0"+presentToday.getMonth()).slice(-2) // 2 digit month
-    var YYYY = presentToday.getFullYear() // 4 digit year
-    var startToday = YYYY+"."+MM+"."+DD
-
-    var hh = ("0"+presentToday.getHours()).slice(-2) // 2 digit hour
-    var mm = ("0"+presentToday.getMinutes()).slice(-2) // 2 digit minute
-    var ss = ("0"+presentToday.getSeconds()).slice(-2) // 2 digit second
-    presentToday = startToday+"D"+hh+":"+mm+":"+ss+".0000000"
+    if (days === 5) {
+      setQueryTimeFrame("(.z.P-5D;.z.P)")
+      setGraphTickValues("every 24 hours")
+    } else if (days === 3) {
+      setQueryTimeFrame("(.z.P-3D;.z.P)")
+      setGraphTickValues("every 12 hours")
+    } else if (days === 1) {
+      setQueryTimeFrame("(.z.P-1D;.z.P)")
+      setGraphTickValues("every 4 hours")
+    }
 
     axios.post(url,
       {
@@ -31,7 +32,7 @@ function GetResult() {
         "function_name": ".dataaccess.qrest",
         "arguments":{
           "db":"rdb, hdb",
-          "query":"select avgsPrice: last avgs price by 0D00:30 xbar time, sym from trade where time within (.z.P-.z.N;.z.P)"
+          "query":"select avgsPrice: last avgs price by 0D00:30 xbar time, sym from trade where time within "+queryTimeFrame
         }
       },
       {
@@ -53,10 +54,10 @@ function GetResult() {
       })// setResult(res.data.result)})  // This is the output if there's no errors
       .catch(err => {setError(err)})              // This is the output if there is a error
       .finally(() => {setLoading(false)})         // This is outputted no matter what
-  }, []) // This useEffect is only ran when the page starts
+  }, [queryTimeFrame]) // This useEffect is only ran when the page starts or queryTimeFrame changes
 
   // Returning result, loading and error variables as an object
-  return {result, loading, error};
+  return {result, loading, error, graphTickValues};
 
 }
 

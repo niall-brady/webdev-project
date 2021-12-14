@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { ResponsiveLine } from '@nivo/line'
+import React, { useState } from "react";
 import GetVolResult from "./getData";
-import { /*graphTickValues,*/ graphXFormat, graphXTicks, themeGraph } from "./shared/graphVariables";
-import ConvertData from "./shared/graphFunctions.js";
+import { ConvertData, ShowGraph } from "./shared/graphFunctions.js";
 import {showLoading} from "./shared/showLoading";
+import { Tab, Tabs } from '@mui/material';
 
 /* 
     (Niall's Volatility Graph)
@@ -12,99 +11,58 @@ import {showLoading} from "./shared/showLoading";
 // Exported graph component
 const GraphVolatility = () => {
     // Date Range Choice
-    const [dayRange, setDayRange] = useState(5)
+    const [dayRange, setDayRange] = useState(1)
 
+    ///// For 24 hr
     // Getting result from qRest query
-    const {result, loading, error, graphTickValues} = GetVolResult(dayRange);
+    const {result, loading:loading1, error:error1, graphTickValues:tickValues1} = GetVolResult(1);
 
     // Converting result to be readable by nivo
-    const data = ConvertData(result, "devPrice")
+    const data1 = ConvertData(result, "devPrice")
 
-    // If still loading data
-    if (loading) return showLoading
+    ///// For 3 days
+    // Getting result from qRest query
+    const {result:result3, loading:loading3, error:error3, graphTickValues:tickValues3} = GetVolResult(3);
 
-    // Else if an error has occurred
-    else if (error) console.log(error)
+    // Converting result to be readable by nivo
+    const data3 = ConvertData(result3, "devPrice")
+
+    ///// For 5 days
+    // Getting result from qRest query
+    const {result:result5, loading:loading5, error:error5, graphTickValues:tickValues5} = GetVolResult(5);
+
+    // Converting result to be readable by nivo
+    const data5 = ConvertData(result5, "devPrice")
 
     // Otherwise...    
     // (className set for the plot so that it can be styled in 'App.css' by referring to that name)
     return (
         <div>
         <h2 className="Heading" >Volatility Graph</h2>
-        <div className="plot">
-            <ResponsiveLine
-                data={data}
-                margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-                xScale={{ format: "%Y-%m-%dT%H:%M:%S.%L%Z", type: "time" }}
-                xFormat={graphXFormat}
-                yScale={{
-                    type: 'linear',
-                    min: 'auto',
-                    max: 'auto',
-                    stacked: false,
-                    reverse: false
-                }}
-                axisTop={null}
-                colors={{scheme: themeGraph}}
-                axisRight={null}
-                axisBottom={{
-                    tickValues: graphTickValues,
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    format: graphXTicks,
-                    legend: "Time",
-                    legendOffset: 36,
-                    legendPosition: "middle"
-                  }}
-                axisLeft={{
-                    orient: 'left',
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legend: 'Standard Deviation of Price',
-                    legendOffset: -40,
-                    legendPosition: 'middle'
-                }}
-                gridXValues={graphTickValues}
-                pointSize={10}
-                pointColor={{ theme: 'background' }}
-                pointBorderWidth={2}
-                pointBorderColor={{ from: 'serieColor' }}
-                pointLabelYOffset={-12}
-                useMesh={true}
-                theme={{
-                    legends: { hidden: { text: { textDecoration: 'line-through' } } },
-                }}
-                legends={[
-                    {
-                        anchor: 'bottom-right',
-                        direction: 'column',
-                        justify: false,
-                        translateX: 100,
-                        translateY: 0,
-                        itemsSpacing: 0,
-                        itemDirection: 'left-to-right',
-                        itemWidth: 80,
-                        itemHeight: 20,
-                        itemOpacity: 0.75,
-                        toggleSerie: true,
-                        symbolSize: 12,
-                        symbolShape: 'circle',
-                        symbolBorderColor: 'rgba(0, 0, 0, .5)',
-                        effects: [
-                            {
-                                on: 'hover',
-                                style: {
-                                    itemBackground: 'rgba(0, 0, 0, .03)',
-                                    itemOpacity: 1
-                                }
-                            }
-                        ]
-                    }
-                ]}
-            />
-        </div>
+        <Tabs
+          value={dayRange}
+          onChange={(event, newValue) => {setDayRange(newValue)}}
+          textColor="secondary"
+          indicatorColor="secondary"
+          aria-label="secondary tabs example"
+          centered
+          variant='fullWidth'
+        >
+          <Tab value={1} label="24 hr" wrapped={true}/>
+          <Tab value={3} label="3 Days" wrapped={true} />
+          <Tab value={5} label="5 Days" wrapped={true}/>
+        </Tabs>
+        {(dayRange == 1) && loading1 && showLoading}
+        {(dayRange == 1) && !loading1 && error1 && console.log(error1)}
+        {(dayRange == 1) && !loading1 && !error1 && ShowGraph(data1, tickValues1)}
+
+        {(dayRange == 3) && loading3 && showLoading}
+        {(dayRange == 3) && !loading3 && error3 && console.log(error3)}
+        {(dayRange == 3) && !loading3 && !error3 && ShowGraph(data3, tickValues3)}
+
+        {(dayRange == 5) && loading5 && showLoading}
+        {(dayRange == 5) && !loading5 && error5 && console.log(error5)}
+        {(dayRange == 5) && !loading5 && !error5 && ShowGraph(data5, tickValues5)}
         </div>
     );
 }
