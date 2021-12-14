@@ -12,7 +12,7 @@ import {showLoading} from "./shared/showLoading";
 // Exported graph component
 const GraphVolatility = () => {
     // Date Range Choice
-    const [dayRange, setDayRange] = useState(1)
+    const [dayRange, setDayRange] = useState(5)
 
     // Getting result from qRest query
     const {result, loading, error, graphTickValues} = GetVolResult(dayRange);

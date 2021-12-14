@@ -15,12 +15,12 @@ function GetVolResult(days) {
   const [graphTickValues, setGraphTickValues] = useState("every 4 hours")
 
   useEffect(() => {
-    if (days == 3) {
+    if (days == 5) {
+      setQueryTimeFrame("(.z.P-5D;.z.P)")
+      setGraphTickValues("every 24 hours")
+    } else if (days == 3) {
       setQueryTimeFrame("(.z.P-3D;.z.P)")
       setGraphTickValues("every 8 hours")
-    } else if (days == 2) {
-      setQueryTimeFrame("(.z.P-2D;.z.P)")
-      setGraphTickValues("every 6 hours")
     } else if (days == 1) {
       setQueryTimeFrame("(.z.P-1D;.z.P)")
       setGraphTickValues("every 4 hours")
