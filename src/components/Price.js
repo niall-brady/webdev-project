@@ -103,6 +103,10 @@ const Price = () => {
           data={rows}
           columns={columns}
           title="Prices"
+          options={{
+            pageSize: 10,
+            search: false,
+          }}
           // hideFooterPagination={true}
         />
       </div>
