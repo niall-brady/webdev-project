@@ -24,9 +24,10 @@ body {
 
 .Title {
   color: var(--red);
-  left: 372px;
+  left: 275px;
   position: absolute;
-  padding-top: 30px;
+  padding-top: 20px;
+  font-size: 54px;
 }
 
 .Heading {
