@@ -3,7 +3,7 @@ import { Button, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import GraphVolatility from './components/graphVolatility';
 import Graph from './components/graph';
-import QuestionFourPlot from './components/QuestionFourPlot';
+// import QuestionFourPlot from './components/QuestionFourPlot';
 import FinalPrice from "./components/FinalPrice";
 import QuestionFiveGet from "./components/QuestionFiveGet"
 import { StylesProvider } from '@material-ui/core/styles';
