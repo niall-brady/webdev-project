@@ -114,6 +114,7 @@ const Ytd2Price = () => {
             pageSize: 10,
             search: false,
             showTitle: false, 
+            padding:'dense', 
           }}
           // hideFooterPagination={true}
         />

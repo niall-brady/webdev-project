@@ -20,8 +20,8 @@ export default function QuestionFourGet() {
  
     // define constants. Hardcode for each sym -------------------------------------
       
-    const [outId, setOutId] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [outIdFour, setOutIdFour] = useState([]);
+    const [loadingFour, setLoadingFour] = useState(true);
 
     // const [APPLId, setAPPLId] = useState([]);
     // const [AIGId, setAIGId] = useState([]);
@@ -66,8 +66,8 @@ export default function QuestionFourGet() {
            //console.log(response.data.result);
 
            // define variables ------------------------------------------//
-            setOutId(response.data.result);
-            setLoading(false);
+            setOutIdFour(response.data.result);
+            setLoadingFour(false);
 
         //    setAPPLId(response.data.result[0])
         //    setAIGId(response.data.result[1])
@@ -95,8 +95,8 @@ export default function QuestionFourGet() {
      
 }, []);
 
-    console.log(outId); // log the data to the console
-    return {outId,loading}; //return the outputs, mute if plotting
+    console.log(outIdFour); // log the data to the console
+    return {outIdFour,loadingFour}; //return the outputs, mute if plotting
 
 
 

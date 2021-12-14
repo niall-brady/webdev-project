@@ -4,6 +4,7 @@ import Price from "./Price";
 import YtdPrice from "./YtdPrice";
 import Ytd2Price from "./Ytd2Price";
 import { StylesProvider } from "@material-ui/core/styles";
+import QuestionOneFourPlot from "./QuestionOneFourPlot";
 
 function FinalPrice() {
   const [value, setValue] = useState("one");
@@ -28,7 +29,8 @@ function FinalPrice() {
             <Tab value="two" label="1 Day Ago" wrapped={true} />
             <Tab value="three" label="2 Days Ago" wrapped={true} />
           </Tabs>
-          {value === "one" && <Price />}
+          {/* {value === "one" && <Price />} */}
+          {value === "one" && <QuestionOneFourPlot />}
           {value === "two" && <YtdPrice />}
           {value === "three" && <Ytd2Price />}
         </div>

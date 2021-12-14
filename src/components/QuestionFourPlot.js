@@ -28,14 +28,14 @@ import {ArrowUpward} from '@material-ui/icons'
 const QuestionFourPlot = () => {
     
   // First call QuestionFourGet to get data
-    const {outId,loading} = QuestionFourGet();
+    const {outIdFour,loadingFour} = QuestionFourGet();
     //console.log(outId);
 
     // if loading, do not render table, needed as there will be no rendered data initially (if remove this you will get errors)
     // if (loading) {
     //   return <div className="App">Loading...</div>;
     //  }
-    if (loading) return showLoading
+    if (loadingFour) return showLoading
 
      //------------------------------------------------
     // Column set up for MUI //
@@ -92,25 +92,25 @@ const QuestionFourPlot = () => {
 
       // for loop to append arrow to end of Price Change data
 
-      for (var i = 0; i < outId.length; i++) {
-        if ( Number(outId[i].diffPrice[0]).toFixed(2) > 0) {
-          arrowDiff[i]=(Number(outId[i].diffPrice[0]).toFixed(2) +" 🡱")
+      for (var i = 0; i < outIdFour.length; i++) {
+        if ( Number(outIdFour[i].diffPrice[0]).toFixed(2) > 0) {
+          arrowDiff[i]=(Number(outIdFour[i].diffPrice[0]).toFixed(2) +" 🡱")
         }
-        else if ( Number(outId[i].diffPrice[0]).toFixed(2) < 0) {
-          arrowDiff[i]=(Number(outId[i].diffPrice[0]).toFixed(2) +" 🡳")
+        else if ( Number(outIdFour[i].diffPrice[0]).toFixed(2) < 0) {
+          arrowDiff[i]=(Number(outIdFour[i].diffPrice[0]).toFixed(2) +" 🡳")
         }
-        else {arrowDiff[i]=(Number(outId[i].diffPrice[0]).toFixed(2) + " ‒")}
+        else {arrowDiff[i]=(Number(outIdFour[i].diffPrice[0]).toFixed(2) + " ‒")}
       }
 
       //set up column data and number of rows using a for loop. Extracts data from outId
       var rows=[]
-      for (var i = 0; i < outId.length; i++) {
+      for (var i = 0; i < outIdFour.length; i++) {
         rows[i] = {
           id: i,
-          sym: outId[i].sym,
-          price: Number(outId[i].lastPrice).toFixed(2),
+          sym: outIdFour[i].sym,
+          price: Number(outIdFour[i].lastPrice).toFixed(2),
           priceChange: (arrowDiff[i]),
-          colourChange:Number(outId[i].diffPrice[0]).toFixed(2), // this column is not shown but needed to change colour of table depending on price
+          colourChange:Number(outIdFour[i].diffPrice[0]).toFixed(2), // this column is not shown but needed to change colour of table depending on price
           editable: false,
         }
 
