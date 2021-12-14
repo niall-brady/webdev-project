@@ -112,7 +112,6 @@ const Price = () => {
   // call plotting.
   return (
     <div align="center">
-      <h2 className="Heading">Current Prices</h2>
       {plottable()}
     </div>
   );

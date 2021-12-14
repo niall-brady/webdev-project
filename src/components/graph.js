@@ -3,6 +3,7 @@ import { ResponsiveLine } from '@nivo/line'
 import GetResult from "./get";
 import { graphTickValues, graphXFormat, graphXTicks, themeGraph } from "./shared/graphVariables";
 import ConvertData from "./shared/graphFunctions.js"
+import { showLoading } from "./shared/showLoading";
 
 /* 
     (Conor's Running Averages Graph)
@@ -17,7 +18,7 @@ const Graph = () => {
     const data = ConvertData(result, "avgsPrice")
 
     // If still loading data
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return showLoading
 
     // Else if an error has occurred
     else if (error) console.log(error)

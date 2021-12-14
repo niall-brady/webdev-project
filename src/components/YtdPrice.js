@@ -119,7 +119,6 @@ const YtdPrice = () => {
   // call plotting.
   return (
     <div align="center">
-      <h2 className="Heading">Yesterday's Prices</h2>
       {plottable()}
     </div>
   );

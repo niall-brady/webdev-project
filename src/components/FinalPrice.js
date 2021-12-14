@@ -12,7 +12,7 @@ function FinalPrice() {
     <StylesProvider injectFirst>
       <div className="App">
         <div className="content">
-          <h1 className="Title">Prices by Sym</h1>
+          <h2 className="Heading">Prices by Sym</h2>
           <Tabs
             value={value}
             onChange={(event, newValue) => {
@@ -24,9 +24,9 @@ function FinalPrice() {
             centered
             variant="fullWidth"
           >
-            <Tab value="one" label="Current Prices" wrapped={true} />
-            <Tab value="two" label="Yesterday's Prices" wrapped={true} />
-            <Tab value="three" label="Prices 2 Days Before" wrapped={true} />
+            <Tab value="one" label="Current" wrapped={true} />
+            <Tab value="two" label="1 Day Ago" wrapped={true} />
+            <Tab value="three" label="2 Days Ago" wrapped={true} />
           </Tabs>
           {value === "one" && <Price />}
           {value === "two" && <YtdPrice />}

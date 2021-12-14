@@ -119,7 +119,6 @@ const Ytd2Price = () => {
   // call plotting.
   return (
     <div align="center">
-      <h2 className="Heading">Prices 2 Days Before</h2>
       {plottable()}
     </div>
   );

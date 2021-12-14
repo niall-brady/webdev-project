@@ -25,7 +25,7 @@ function App() {
           centered
           variant='fullWidth'
         >
-          <Tab value="one" label="Current Prices" wrapped={true}/>
+          <Tab value="one" label="Prices by Sym" wrapped={true}/>
           <Tab value="two" label="Running Average Price" wrapped={true} />
           <Tab value="three" label="Last Value Cache" wrapped={true}/>
           <Tab value="four" label="Highest Traded" wrapped={true}/>
