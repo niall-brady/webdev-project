@@ -36,6 +36,12 @@ const Price = () => {
   //------------------------------------------------
   const columns = [
     {
+      field: "time",
+      title: "Time",
+      cellStyle: { textAlign: "right" },
+      align: "right",
+    },
+    {
       field: "sym",
       title: "Sym",
       cellStyle: { textAlign: "right" },
@@ -69,6 +75,7 @@ const Price = () => {
   for (var i = 0; i < outId.length; i++) {
     rows[i] = {
       id: i,
+      time: outId[i].time,
       sym: outId[i].sym,
       price: Number(outId[i].current_price).toFixed(2),
       priceChange: Number(outId[i].min_price).toFixed(2),
@@ -106,6 +113,7 @@ const Price = () => {
           options={{
             pageSize: 10,
             search: false,
+            showTitle: false,
           }}
           // hideFooterPagination={true}
         />
@@ -116,6 +124,7 @@ const Price = () => {
   // call plotting.
   return (
     <div align="center">
+      <h5>Last Updated At: {Date().toLocaleString()}</h5>
       {plottable()}
     </div>
   );
