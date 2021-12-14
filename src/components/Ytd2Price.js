@@ -123,8 +123,16 @@ const Ytd2Price = () => {
   };
 
   // call plotting.
+
+// dates for 2 days ago (i know yesterday is misleading)
+  const today = new Date()
+  const yesterday= new Date(today)
+  yesterday.setDate(yesterday.getDate() - 2)
+  
+  
   return (
     <div align="center">
+      <h5>Data for: {yesterday.toDateString()}</h5>
       {plottable()}
     </div>
   );
