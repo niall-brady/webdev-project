@@ -15,6 +15,9 @@ function GetVolResult(days) {
   const [graphTickValues, setGraphTickValues] = useState("every 4 hours")
 
   useEffect(() => {
+  let interval
+  const fetchData = () => {
+  
     if (days === 5) {
       setQueryTimeFrame("(.z.P-5D;.z.P)")
       setGraphTickValues("every 24 hours")
@@ -53,6 +56,18 @@ function GetVolResult(days) {
       })  // This is the output if there's no errors
       .catch(err => {setError(err)})              // This is the output if there is a error
       .finally(() => {setLoading(false)})         // This is outputted no matter what
+
+    }
+
+    fetchData();
+
+    interval = setInterval(() => {
+      fetchData()
+      }, 3 * 1000) // time is in miliseconds
+      return () => {
+      clearInterval(interval)
+      }
+
   }, [queryTimeFrame]) // This useEffect is only ran when the page starts or queryTimeFrame changes
 
   // Returning result, loading and error variables as an object

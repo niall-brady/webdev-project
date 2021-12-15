@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GetVolResult from "./getData";
 import { ConvertData, ShowGraph } from "./shared/graphFunctions.js";
 import {showLoading} from "./shared/showLoading";
+import {showError} from "./shared/showError";
 import { Tab, Tabs } from '@mui/material';
 
 /* 
@@ -56,15 +57,18 @@ const GraphVolatility = () => {
           <Tab value={5} label="5 Days" wrapped={true}/>
         </Tabs>
         {(dayRange == 1) && loading1 && showLoading}
-        {(dayRange == 1) && !loading1 && error1 && console.log(error1)}
+        {/* {(dayRange == 1) && !loading1 && error1 && console.log(error1)} */}
+        {(dayRange == 1) && !loading1 && error1 && showError}
         {(dayRange == 1) && !loading1 && !error1 && ShowGraph(data1, tickValues1, yLabel, yLabelShort)}
 
         {(dayRange == 3) && loading3 && showLoading}
-        {(dayRange == 3) && !loading3 && error3 && console.log(error3)}
+        {/* {(dayRange == 3) && !loading3 && error3 && console.log(error3)} */}
+        {(dayRange == 3) && !loading3 && error3 && showError}
         {(dayRange == 3) && !loading3 && !error3 && ShowGraph(data3, tickValues3, yLabel, yLabelShort)}
 
         {(dayRange == 5) && loading5 && showLoading}
-        {(dayRange == 5) && !loading5 && error5 && console.log(error5)}
+        {/* {(dayRange == 5) && !loading5 && error5 && console.log(error5)} */}
+        {(dayRange == 5) && !loading5 && error5 && showError}
         {(dayRange == 5) && !loading5 && !error5 && ShowGraph(data5, tickValues5, yLabel, yLabelShort)}
         </div>
     );
