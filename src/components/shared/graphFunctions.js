@@ -104,7 +104,9 @@ const ShowGraph = function ShowGraph(data, graphTickValues) {
                     reverse: false
                 }}
                 axisTop={null}
-                colors={{scheme: themeGraph}}
+                //colors={{scheme: themeGraph}}
+                colors={themeGraph}
+                colorBy="index"
                 axisRight={null}
                 axisBottom={{
                     tickValues: graphTickValues,
