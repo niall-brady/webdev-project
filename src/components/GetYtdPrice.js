@@ -7,12 +7,13 @@ export default function GetYtdPrice() {
 
   const [outId, setOutId] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   // set up UseEffect/React Hook to perform an async axios post request
   useEffect(() => {
     let interval; // set up the refresh interval
     const fetchData = async () => {
-      // try {
+       try {
       const response = await axios.post(
         "https://localhost:8091/executeFunction",
         {
@@ -42,6 +43,13 @@ export default function GetYtdPrice() {
       // define variables ------------------------------------------//
       setOutId(response.data.result);
       setLoading(false);
+     
+    // get error  
+    } catch(error){
+      //console.log(error.response.data.error)
+      setError(true)
+      }
+
     };
     fetchData(); // calls the async axios post
 
@@ -55,5 +63,5 @@ export default function GetYtdPrice() {
   }, []);
 
   //console.log(outId); // log the data to the console
-  return { outId, loading }; //return the outputs, mute if plotting
+  return { outId, loading, error }; //return the outputs, mute if plotting
 }

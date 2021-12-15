@@ -2,14 +2,18 @@ import * as React from "react";
 import GetYtdPrice from "./GetYtdPrice";
 import MaterialTable from "@material-table/core";
 import { showLoading } from "./shared/showLoading";
+import {showError} from "./shared/showError";
 
 // MUI Imports //
 // import Box from '@mui/material/Box';
 // import { DataGrid } from '@mui/x-data-grid';
 
 const YtdPrice = () => {
-  const { outId, loading } = GetYtdPrice();
+  const { outId, loading, error } = GetYtdPrice();
   //console.log(outId);
+
+  // if error
+  if (error) return showError
 
   // if loading, do not render table, needed as there will be no rendered data initially (if remove this you will get errors)
   if (loading) {

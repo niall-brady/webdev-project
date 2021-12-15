@@ -10,6 +10,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {showLoading} from "./shared/showLoading";
+import {showError} from "./shared/showError";
 
 // MUI Imports
 import Box from '@mui/material/Box';
@@ -33,6 +34,12 @@ export default function QuestionFiveGet() {
     const [outIdThree, setOutIdThree] = useState([]);
     const [loadingThree, setLoadingThree] = useState(true);
     
+    // Errors
+    const [errorOne, setErrorOne] = useState(false);
+    const [errorTwo, setErrorTwo] = useState(false);
+    const [errorThree, setErrorThree] = useState(false);
+    
+
     let authen = {
         username: "user",
         password: "pass"
@@ -52,7 +59,7 @@ export default function QuestionFiveGet() {
     // call first async axios post - last hour, use rdb
     //----------------------------------------------------------------------------------------------------
     const fetchDataOne = async () => {
-        // try {
+         try {
              const response  = await axios.post(url,
              {
                  "function_name": "string",
@@ -70,6 +77,13 @@ export default function QuestionFiveGet() {
             // define variables ------------------------------------------//
              setOutIdOne(response.data.result);
              setLoadingOne(false);
+
+             // catch error
+            } catch(error){
+                //console.log(error.response.data.error)
+                setErrorOne(true)
+                }
+
          };
 
 
@@ -77,7 +91,7 @@ export default function QuestionFiveGet() {
     // call second - last day, need to use hdb
     //----------------------------------------------------------------------------------------------------
     const fetchDataTwo = async () => {
-        // try {
+         try {
              const response  = await axios.post(url,
              {
                  "function_name": "string",
@@ -91,6 +105,15 @@ export default function QuestionFiveGet() {
                          );        
             // console log --------
             //console.log(response.data.result);
+             
+            
+            // failsafe for errors
+            // .then((response) => {
+            //     if(response!=error) {
+            //         seterrorTwo(true)
+            //     }
+            // }
+            
 
             // failsafe if null
             if (response.data.result[0].size === null) {
@@ -102,13 +125,21 @@ export default function QuestionFiveGet() {
                 setOutIdTwo(response.data.result);
                 setLoadingTwo(false);
             }
+
+        // catch error    
+        } catch(error){
+            //console.log(error.response.data.error)
+            setErrorTwo(true)
+            }
+
          };
+
 
         //---------------------------------------------------------------------------------------------------- 
         // call third - last week, need to use hdb
         //----------------------------------------------------------------------------------------------------
          const fetchDataThree = async () => {
-            // try {
+             try {
                  const response  = await axios.post(url,
                  {
                      "function_name": "string",
@@ -133,6 +164,13 @@ export default function QuestionFiveGet() {
                     setOutIdThree(response.data.result);
                     setLoadingThree(false);
                 }
+
+            // catch error    
+            } catch(error){
+                //console.log(error.response.data.error)
+                setErrorThree(true)
+                }
+
              };
 
      
@@ -161,6 +199,14 @@ export default function QuestionFiveGet() {
         }
      
 }, []);
+
+
+
+// Error Messages
+
+if (errorOne) {return showError}
+else if (errorTwo) {return showError}
+else if (errorThree) {return showError}
 
 // Don't continue until data has been loaded
 // if (loadingOne) {

@@ -22,6 +22,7 @@ export default function QuestionFourGet() {
       
     const [outIdFour, setOutIdFour] = useState([]);
     const [loadingFour, setLoadingFour] = useState(true);
+    const [errorFour, setErrorFour] = useState(false);
 
     // const [APPLId, setAPPLId] = useState([]);
     // const [AIGId, setAIGId] = useState([]);
@@ -40,7 +41,7 @@ export default function QuestionFourGet() {
     useEffect(() => {
        let interval // set up the refresh interval
         const fetchData = async () => {
-       // try {
+        try {
             const response  = await axios.post("https://localhost:8091/executeFunction",
             {
                 "function_name": "string",
@@ -81,6 +82,12 @@ export default function QuestionFourGet() {
         //    setMSFTId(response.data.result[9])
            //------------------------------------------------------------//
             // return it
+
+       // catch error
+        } catch(error){
+            //console.log(error.response.data.error)
+            setErrorFour(true)
+            }
         
         };
         fetchData(); // calls the async axios post
@@ -96,7 +103,7 @@ export default function QuestionFourGet() {
 }, []);
 
     console.log(outIdFour); // log the data to the console
-    return {outIdFour,loadingFour}; //return the outputs, mute if plotting
+    return {outIdFour,loadingFour, errorFour}; //return the outputs, mute if plotting
 
 
 

@@ -14,6 +14,7 @@ import * as React from 'react';
 import QuestionFourGet from "./QuestionFourGet";
 import GetPrice from "./GetPrice";
 import {showLoading} from "./shared/showLoading";
+import {showError} from "./shared/showError";
 
 // Material Table imports
 import MaterialTable from '@material-table/core';
@@ -27,11 +28,16 @@ import {ArrowUpward} from '@material-ui/icons'
 const QuestionOneFourPlot = () => {
     
     // First call QuestionFourGet to get data
-      const {outId,loading} = GetPrice();
+      const {outId,loading,error} = GetPrice();
       const outIdOne = outId
       const loadingOne = loading
+      const errorOne = error
       
-      const {outIdFour,loadingFour} = QuestionFourGet();
+      const {outIdFour,loadingFour,errorFour} = QuestionFourGet();
+
+    // Error if breaks
+    if (errorOne) {return showError}
+    else if (errorFour) {return showError}
 
     // Loading if no data
       if (loadingOne) {return showLoading}
