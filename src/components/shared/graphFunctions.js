@@ -133,7 +133,7 @@ const ShowGraph = function ShowGraph(data, graphTickValues) {
                 pointLabelYOffset={-12}
                 useMesh={true}
                 theme={{
-                    legends: { hidden: { text: { textDecoration: 'line-through' } } },
+                    legends: { hidden: { text: { textDecoration: 'line-through' } } }
                 }}
                 legends={[
                     {
