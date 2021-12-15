@@ -27,6 +27,18 @@ body {
   padding-left: 8px;
 }
 
+.plotToolTip {
+  background: rgba(255,255,255,0.8);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+  padding: 8px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.plotToolTipSpan {
+  font-weight: normal;
+}
+
 .Title {
   color: var(--red);
   text-align: center;

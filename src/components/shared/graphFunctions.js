@@ -89,6 +89,10 @@ function ConvertData(result, yAxisName) {
 }
 
 const ShowGraph = function ShowGraph(data, graphTickValues) {
+    var yLabel = "Standard Deviation of Price"
+    var yLabelShort = "Std Price"
+    var xLabel = "Time"
+    var xLabelShort = "Time"
     return (
         <div className="plot">
             <ResponsiveLine
@@ -107,6 +111,17 @@ const ShowGraph = function ShowGraph(data, graphTickValues) {
                 //colors={{scheme: themeGraph}}
                 colors={themeGraph}
                 colorBy="index"
+                tooltip={(input) => {
+                    var sym = input.point.serieId
+                    var pointX = input.point.data.xFormatted
+                    var pointY = input.point.data.yFormatted
+                    return (
+                    <div className="plotToolTip">
+                        <p><span className="plotToolTipSpan">Sym:</span> {sym}</p>
+                        <p><span className="plotToolTipSpan">{xLabelShort}:</span> {pointX}</p>
+                        <p><span className="plotToolTipSpan">{yLabelShort}:</span> {pointY}</p>
+                    </div>
+                  )}}
                 axisRight={null}
                 axisBottom={{
                     tickValues: graphTickValues,
@@ -114,7 +129,7 @@ const ShowGraph = function ShowGraph(data, graphTickValues) {
                     tickPadding: 5,
                     tickRotation: 0,
                     format: graphXTicks,
-                    legend: "Time",
+                    legend: xLabel,
                     legendOffset: 40,
                     legendPosition: "middle"
                   }}
@@ -123,7 +138,7 @@ const ShowGraph = function ShowGraph(data, graphTickValues) {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Standard Deviation of Price',
+                    legend: yLabel,
                     legendOffset: -50,
                     legendPosition: 'middle'
                 }}
