@@ -10,6 +10,9 @@ import { Tab, Tabs } from '@mui/material';
 
 // Exported graph component
 const Graph = () => {
+    const yLabel = "Running Average Price"
+    const yLabelShort = "R. Avg Price"
+
     // Date Range Choice
     const [dayRange, setDayRange] = useState(1)
 
@@ -54,15 +57,15 @@ const Graph = () => {
         </Tabs>
         {(dayRange == 1) && loading1 && showLoading}
         {(dayRange == 1) && !loading1 && error1 && console.log(error1)}
-        {(dayRange == 1) && !loading1 && !error1 && ShowGraph(data1, tickValues1)}
+        {(dayRange == 1) && !loading1 && !error1 && ShowGraph(data1, tickValues1, yLabel, yLabelShort)}
 
         {(dayRange == 3) && loading3 && showLoading}
         {(dayRange == 3) && !loading3 && error3 && console.log(error3)}
-        {(dayRange == 3) && !loading3 && !error3 && ShowGraph(data3, tickValues3)}
+        {(dayRange == 3) && !loading3 && !error3 && ShowGraph(data3, tickValues3, yLabel, yLabelShort)}
 
         {(dayRange == 5) && loading5 && showLoading}
         {(dayRange == 5) && !loading5 && error5 && console.log(error5)}
-        {(dayRange == 5) && !loading5 && !error5 && ShowGraph(data5, tickValues5)}
+        {(dayRange == 5) && !loading5 && !error5 && ShowGraph(data5, tickValues5, yLabel, yLabelShort)}
         </div>
     );
 }

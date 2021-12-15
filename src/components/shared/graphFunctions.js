@@ -88,9 +88,7 @@ function ConvertData(result, yAxisName) {
     return data
 }
 
-const ShowGraph = function ShowGraph(data, graphTickValues) {
-    var yLabel = "Standard Deviation of Price"
-    var yLabelShort = "Std Price"
+const ShowGraph = function ShowGraph(data, graphTickValues, yLabel, yLabelShort) {
     var xLabel = "Time"
     var xLabelShort = "Time"
     return (
