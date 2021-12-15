@@ -20,6 +20,8 @@ body {
 .plot {
   height: 600px;
   width: 100%;
+  border:0px outset #999;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
 }
 
 .Title {
