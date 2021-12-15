@@ -23,6 +23,8 @@ body {
   border:0px outset #999;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
   margin-bottom: 20px;
+  padding-bottom: 8px;
+  padding-left: 8px;
 }
 
 .Title {

@@ -115,7 +115,7 @@ const ShowGraph = function ShowGraph(data, graphTickValues) {
                     tickRotation: 0,
                     format: graphXTicks,
                     legend: "Time",
-                    legendOffset: 36,
+                    legendOffset: 40,
                     legendPosition: "middle"
                   }}
                 axisLeft={{
@@ -124,7 +124,7 @@ const ShowGraph = function ShowGraph(data, graphTickValues) {
                     tickPadding: 5,
                     tickRotation: 0,
                     legend: 'Standard Deviation of Price',
-                    legendOffset: -40,
+                    legendOffset: -50,
                     legendPosition: 'middle'
                 }}
                 gridXValues={graphTickValues}
@@ -135,8 +135,11 @@ const ShowGraph = function ShowGraph(data, graphTickValues) {
                 pointLabelYOffset={-12}
                 useMesh={true}
                 theme={{
-                    legends: { hidden: { text: { textDecoration: 'line-through' } } }
-                }}
+                    legends: { hidden: { text: { textDecoration: 'line-through' } } },
+                    fontSize: 14,
+                    axis: {legend:{text:{fontSize: 20}}}
+                    }
+                }
                 legends={[
                     {
                         anchor: 'bottom-right',
