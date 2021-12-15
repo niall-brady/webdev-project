@@ -26,10 +26,13 @@ body {
 
 .Title {
   color: var(--red);
-  left: 275px;
+  text-align: center;
+  width: 50%;
+  left: 25%;
   position: absolute;
-  padding-top: 20px;
-  font-size: 54px;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  font-size: min(min(7vh, 4vw), 56px);
 }
 
 .Heading {
@@ -56,5 +59,8 @@ body {
 
 .byline {
   font-size: 32px;
+  padding-right: 5vw;
+  height: min(min(12vh, 8vw), 100px);
+  width: min(min(12vh, 8vw), 100px);
   color: rgb(0, 0, 0);
 }
