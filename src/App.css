@@ -40,14 +40,26 @@ body {
 }
 
 .Title {
-  color: var(--red);
   text-align: center;
   width: 50%;
-  left: 25%;
+  left: 0%;
+  padding-left: 20vw;
+  padding-right: 15vw;
   position: absolute;
   padding-top: 1vh;
   padding-bottom: 1vh;
   font-size: min(min(7vh, 4vw), 56px);
+
+  background: rgb(255,113,91);
+  background: linear-gradient(90deg, var(--green) 0%, var(--green) 70%, rgba(0,0,0,0) 90%); 
+
+  color: white;
+  border-bottom: var(-white);
+  border-top: var(--white);
+  border-width: 0;
+  border-bottom-width: 0.5vh;
+  border-top-width: 1vh;
+  border-style: solid;
 }
 
 .Heading {
@@ -74,8 +86,10 @@ body {
 
 .byline {
   font-size: 32px;
-  padding-right: 5vw;
+  padding-right: 0vw;
+  padding-top: 0.5vh;
   height: min(min(12vh, 8vw), 100px);
   width: min(min(12vh, 8vw), 100px);
+  position: sticky;
   color: rgb(0, 0, 0);
 }
