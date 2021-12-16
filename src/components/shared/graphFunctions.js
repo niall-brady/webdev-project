@@ -117,7 +117,7 @@ const ShowGraph = function ShowGraph(data, graphTickValues, yLabel, yLabelShort)
                     <div className="plotToolTip">
                         <p><span className="plotToolTipSpan">Sym:</span> {sym}</p>
                         <p><span className="plotToolTipSpan">{xLabelShort}:</span> {pointX}</p>
-                        <p><span className="plotToolTipSpan">{yLabelShort}:</span> {pointY}</p>
+                        <p><span className="plotToolTipSpan">{yLabelShort}:</span> {(Number(pointY)).toFixed(2)}</p>
                     </div>
                   )}}
                 axisRight={null}
