@@ -64,7 +64,8 @@ export default function QuestionFiveGet() {
              {
                  "function_name": "string",
                  "arguments": { "db": "rdb",
-                 "query":"1#desc select (sum size) by sym from trade where time within (.z.p-01:00;.z.p)"
+                  "query":"1#desc select (sum size) by sym from trade where time within (.z.p-01:00;.z.p)"
+                
                  }
                  },
                          {
@@ -201,7 +202,6 @@ export default function QuestionFiveGet() {
 }, []);
 
 
-
 // Error Messages
 
 if (errorOne) {return showError}
@@ -262,11 +262,24 @@ else if (errorThree) {return showError}
 //--------------------------------------------------------------
 
 const fsize = 22;
+const fsize_date=16;
 const msize = 5;
 const hcolor = '#FF715B'
 
     const plottable = () => {
-        return (
+
+    const today = new Date()
+    
+    // get time periods
+    const hourAgo= new Date(today)
+    hourAgo.setHours(hourAgo.getDate() - 1)
+    const dayAgo= new Date(today)
+    dayAgo.setDate(dayAgo.getDate() - 1)
+    const weekAgo= new Date(today)
+    weekAgo.setDate(weekAgo.getDate() - 7)
+    
+    
+    return (
 
             // Box styling elements
             <Box
@@ -276,7 +289,7 @@ const hcolor = '#FF715B'
                 '& > :not(style)': {
                 m: 1,
                 width: 310,
-                height: 250,
+                height: 320,
                 margin:'auto',
                 },
             }}
@@ -289,7 +302,7 @@ const hcolor = '#FF715B'
                     Past Hour
                     </Typography>
                     <br/>
-                
+
                     <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} fontStyle='italic'>
                     Sym: {outIdOne[0].sym}
                     </Typography>
@@ -298,6 +311,12 @@ const hcolor = '#FF715B'
                     <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} >
                     Size: {Number((outIdOne[0].size).toPrecision(5))}
                     </Typography>
+                    <br/>
+                                    
+                    <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize_date} fontStyle='italic'>
+                    Period From: {new Date().toLocaleString()} to {hourAgo.toLocaleString()} 
+                    </Typography>
+                   
 
             </Paper>
 
@@ -318,6 +337,13 @@ const hcolor = '#FF715B'
                 <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} >
                     Size: {Number((outIdTwo[0].size).toPrecision(5))}
                 </Typography>
+                <br/>
+                                
+                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize_date} fontStyle='italic'>
+                    Period From: {new Date().toLocaleString()} to {dayAgo.toLocaleString()} 
+                    </Typography>
+                    
+
 
             </Paper>
 
@@ -337,6 +363,12 @@ const hcolor = '#FF715B'
                 <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize} >
                     Size: {Number((outIdThree[0].size).toPrecision(5))}
                 </Typography>
+                <br/>
+                
+                <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize_date} fontStyle='italic'>
+                Period From: {new Date().toLocaleString()} to {weekAgo.toLocaleString()} 
+                </Typography>
+                
 
             </Paper>
 
@@ -350,10 +382,14 @@ const hcolor = '#FF715B'
          <h2 className="Heading">
             Highest Traded Instrument
           </h2>
+          {/* <br/> */}
+
+          <h5>Last Updated At: {Date().toLocaleString()}</h5>
+
+          {plottable()}
 
           <br/>
 
-          {plottable()}
           </div>    
         );
     
