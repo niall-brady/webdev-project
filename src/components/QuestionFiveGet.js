@@ -24,6 +24,7 @@ import Typography from '@mui/material/Typography';
 
 export default function QuestionFiveGet() {
  
+
     // define constants for async calls.  -------------------------------------
      
     const url = "https://localhost:8091/executeFunction";
@@ -38,7 +39,8 @@ export default function QuestionFiveGet() {
     const [errorOne, setErrorOne] = useState(false);
     const [errorTwo, setErrorTwo] = useState(false);
     const [errorThree, setErrorThree] = useState(false);
-    
+
+    // const prevSeven = usePrevious(outIdThree);
 
     let authen = {
         username: "user",
@@ -194,7 +196,7 @@ export default function QuestionFiveGet() {
         fetchDataOne();
         fetchDataTwo();
         fetchDataThree();
-        }, 3 * 1000) // time is in miliseconds
+        }, 3 * 1000) // time is in miliseconds, 10 seconds
         return () => {
         clearInterval(interval)
         }
@@ -223,9 +225,10 @@ else if (errorThree) {return showError}
    else if (loadingTwo) {return showLoading}
    else if (loadingThree) {return showLoading}
 
+
     // console.log(outIdOne); // log the data to the console
     // console.log(outIdTwo); // log the data to the console
-    // console.log(outIdThree); // log the data to the console
+     console.log(outIdThree); // log the data to the console
 
     // I cannot get the outputs to export correctly, therefore have done plotting below
    // return (outIdOne,loadingOne,outIdTwo,loadingTwo,outIdThree,loadingThree); //return the outputs, mute if plotting
@@ -289,7 +292,7 @@ const hcolor = '#FF715B'
                 '& > :not(style)': {
                 m: 1,
                 width: 310,
-                height: 320,
+                height: 300,
                 margin:'auto',
                 },
             }}
@@ -314,7 +317,8 @@ const hcolor = '#FF715B'
                     <br/>
                                     
                     <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize_date} fontStyle='italic'>
-                    Period From: {new Date().toLocaleString()} to {hourAgo.toLocaleString()} 
+                    {/* Period From: {new Date().toLocaleString()} to {hourAgo.toLocaleString()}  */}
+                    Counter Started at: {hourAgo.toLocaleString()}
                     </Typography>
                    
 
@@ -340,7 +344,8 @@ const hcolor = '#FF715B'
                 <br/>
                                 
                 <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize_date} fontStyle='italic'>
-                    Period From: {new Date().toLocaleString()} to {dayAgo.toLocaleString()} 
+                    {/* Period From: {new Date().toLocaleString()} to {dayAgo.toLocaleString()}  */}
+                    Counter Started at: {dayAgo.toLocaleString()}
                     </Typography>
                     
 
@@ -366,7 +371,8 @@ const hcolor = '#FF715B'
                 <br/>
                 
                 <Typography variant="body1" component="div" align="center" gutterBottom="false" fontSize={fsize_date} fontStyle='italic'>
-                Period From: {new Date().toLocaleString()} to {weekAgo.toLocaleString()} 
+                {/* Period From: {new Date().toLocaleString()} to {weekAgo.toLocaleString()}  */}
+                Counter Started at: {weekAgo.toLocaleString()}
                 </Typography>
                 
 
