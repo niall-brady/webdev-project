@@ -275,7 +275,7 @@ const hcolor = '#FF715B'
     
     // get time periods
     const hourAgo= new Date(today)
-    hourAgo.setHours(hourAgo.getDate() - 1)
+    hourAgo.setHours(hourAgo.getDate()-10)
     const dayAgo= new Date(today)
     dayAgo.setDate(dayAgo.getDate() - 1)
     const weekAgo= new Date(today)
@@ -285,7 +285,7 @@ const hcolor = '#FF715B'
     return (
 
             // Box styling elements
-            <Box className="Q5"
+            <Box
             sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -293,7 +293,7 @@ const hcolor = '#FF715B'
                 m: 1,
                 width: 310,
                 height: 300,
-                margin: 'auto',
+                margin:'auto',
                 },
             }}
             >
