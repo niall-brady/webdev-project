@@ -5,26 +5,34 @@
   --green: #1EA896;
   --yellow: #EFCA08;
   --blue: #39A0ED;
+  --page-border-inner: #1EA896;
+  --page-border-outer: rgb(73, 73, 73);
 }
 
 .App {
   text-align: center;
+  /* margin: 0 10%; */
+  background-color: white;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 body {
-  margin: 0 10%;
-  /*background-color: var(--dark-grey);
-  color: var(--white);*/
+  margin: 0 5%;
+  /*color: var(--white);*/
+  background-color: grey;
+  background: linear-gradient(90deg, var(--page-border-outer) 0%, var(--page-border-inner) 6%, var(--page-border-inner) 94%, var(--page-border-outer) 100%); 
 }
 
 .plot {
   height: 600px;
-  width: 100%;
+  width: 96%;
   border:0px outset #999;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
   margin-bottom: 20px;
   padding-bottom: 8px;
   padding-left: 8px;
+  margin-left: 1.7%;
 }
 
 .plotToolTip {
@@ -47,6 +55,7 @@ body {
   padding-right: 15vw;
   position: absolute;
   padding-top: 1vh;
+  margin-top: 1vh;
   padding-bottom: 1vh;
   font-size: min(min(7vh, 4vw), 56px);
 
@@ -59,7 +68,7 @@ body {
   border-width: 0;
   border-bottom-width: 0.5vh;
   border-top-width: 1vh;
-  border-style: solid;
+  border-style: none;
 }
 
 .Heading {
@@ -70,6 +79,12 @@ body {
   text-align: center;
   padding-top: 20vh;
   color: black;
+  padding-bottom: 50vh;
+}
+
+.Q5 {
+  margin-bottom: 40vh;
+  overflow-anchor: none;
 }
 
 .text-left-right {

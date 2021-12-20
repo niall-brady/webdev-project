@@ -285,7 +285,7 @@ const hcolor = '#FF715B'
     return (
 
             // Box styling elements
-            <Box
+            <Box className="Q5"
             sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -293,7 +293,7 @@ const hcolor = '#FF715B'
                 m: 1,
                 width: 310,
                 height: 300,
-                margin:'auto',
+                margin: 'auto',
                 },
             }}
             >
