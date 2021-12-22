@@ -271,11 +271,19 @@ const hcolor = '#FF715B'
 
     const plottable = () => {
 
-    const today = new Date()
-    
     // get time periods
-    const hourAgo= new Date(today)
-    hourAgo.setHours(hourAgo.getDate()-10)
+    const today = new Date()
+
+    // using setHours to get the time an hour ago seems dodgy
+    // const hourAgo= new Date(today)
+    // hourAgo.setHours(hourAgo.getDate()-1)
+    
+    // Works well for getting the time an hour ago
+    var currentDateObj = new Date();
+    var numberOfMlSeconds = currentDateObj.getTime();
+    var addMlSeconds = 60 * 60 * 1000;
+    var hourAgo = new Date(numberOfMlSeconds - addMlSeconds);
+
     const dayAgo= new Date(today)
     dayAgo.setDate(dayAgo.getDate() - 1)
     const weekAgo= new Date(today)
